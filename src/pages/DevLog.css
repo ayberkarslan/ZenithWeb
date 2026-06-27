@@ -1,0 +1,83 @@
+.timeline-container {
+  position: relative;
+  padding-left: 1.5rem;
+  /* Add margin at bottom so it scrolls well */
+  margin-bottom: 4rem;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 1rem;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-color) 0%, var(--border-color) 20%, transparent 100%);
+  border-radius: 1px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -1.8rem;
+  top: 1.5rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 3px solid var(--bg-color);
+  box-shadow: 0 0 0 1px var(--border-color);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.timeline-item.active .timeline-dot {
+  box-shadow: 0 0 0 2px var(--accent-color);
+  transform: scale(1.2);
+}
+
+.timeline-item .card {
+  opacity: 0.7;
+  transform: scale(0.98);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 1.5rem;
+}
+
+.timeline-item:hover .card {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.timeline-item.active .card {
+  opacity: 1;
+  transform: scale(1);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px -10px rgba(var(--accent-color-rgb), 0.2);
+}
+
+/* Lightbox overlay styling */
+body:has(.fixed.inset-0) {
+  overflow: hidden;
+}
+
+.prose h4 {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Split Screen Layout */
+.dev-log-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .dev-log-layout {
+    grid-template-columns: 4fr 8fr;
+    gap: 3rem;
+  }
+}
