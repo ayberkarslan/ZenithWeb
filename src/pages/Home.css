@@ -1,0 +1,184 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  background-color: var(--bg-color);
+}
+
+.hero-content-left {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hero-text-block {
+  padding-left: 10vw;
+  pointer-events: auto;
+}
+
+.hero-title-2d {
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.hero-subtitle-2d {
+  font-size: clamp(0.9rem, 1.2vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #888888;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.125rem;
+  font-weight: 500;
+  gap: 0.25rem;
+}
+
+.hero-link:hover {
+  text-decoration: underline;
+}
+
+/* Utilities for 3D Canvas integration */
+.absolute { position: absolute; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.z-0 { z-index: 0; }
+.z-10 { z-index: 10; }
+.pointer-events-none { pointer-events: none; }
+.pointer-events-auto { pointer-events: auto; }
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+}
+
+[data-theme='light'] .hero-overlay {
+  background: radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.8) 100%);
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.mission-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.125rem;
+}
+
+.mission-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mission-image-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-bg);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.who-we-are-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.visual-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  box-shadow: var(--card-shadow);
+}
+
+/* Liquid Glass Ambient Effect */
+.ambient-liquid-orb {
+  position: fixed;
+  top: 10%;
+  right: 10%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+  max-height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--accent-color) 0%, transparent 70%);
+  opacity: 0.15;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+  animation: liquid-drift 20s ease-in-out infinite alternate;
+}
+
+[data-theme='dark'] .ambient-liquid-orb {
+  opacity: 0.3;
+  background: radial-gradient(circle at center, var(--accent-color) 0%, transparent 65%);
+  filter: blur(100px);
+}
+
+@keyframes liquid-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-10%, 15%) scale(1.1); }
+  100% { transform: translate(5%, -10%) scale(0.9); }
+}
+
+.relative { position: relative; }
+.z-10 { z-index: 10; }
+.overflow-hidden { overflow: hidden; }
+.tracking-widest { letter-spacing: 0.1em; }
+.uppercase { text-transform: uppercase; }
+
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
