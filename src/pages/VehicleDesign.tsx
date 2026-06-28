@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { ChevronRight } from 'lucide-react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Float, Environment, ContactShadows, useGLTF } from '@react-three/drei'
 import { useRef } from 'react'
@@ -147,6 +149,19 @@ export default function VehicleDesign() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* Call to Action -> Dev Log */}
+      <section className="py-32 bg-[#030712] relative z-10 mb-16">
+        <div className="container max-w-4xl text-center border border-gray-800/60 bg-gray-900/30 rounded-3xl p-16 shadow-2xl">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Dive Deeper</h2>
+          <p className="text-xl text-gray-400 mb-10 leading-relaxed">
+            Follow our weekly development logs to see exactly how we build, test, and iterate on these systems for SUAS 2026.
+          </p>
+          <Link to="/dev-log" className="btn btn-primary inline-flex items-center text-lg px-8 py-4 rounded-full transition-transform hover:scale-105">
+            See How We Build <ChevronRight size={24} className="ml-2" />
+          </Link>
         </div>
       </section>
     </div>
