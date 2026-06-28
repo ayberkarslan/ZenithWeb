@@ -137,20 +137,20 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
               <div 
-                className="absolute top-full left-0 right-0 w-full mt-4 overflow-hidden z-50 transition-all duration-300"
+                className="absolute top-full left-0 right-0 w-full mt-4 z-50 transition-all duration-300 p-4"
                 style={{ 
-                  backgroundColor: 'rgba(0,0,0,0.95)',
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(10, 132, 255, 0.4)',
-                  boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
+                  backgroundColor: 'rgba(10, 10, 10, 0.85)',
+                  backdropFilter: 'blur(30px)',
+                  WebkitBackdropFilter: 'blur(30px)',
+                  border: '1px solid rgba(10, 132, 255, 0.3)',
+                  boxShadow: '0 20px 60px rgba(0,0,0,0.8)',
                   borderRadius: '28px',
-                  fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
+                  fontFamily: '"Inter", sans-serif'
                 }}
               >
                 {results.length > 0 ? (
-                  <div className="flex flex-col">
-                    <div className="px-6 py-4 border-b border-[rgba(255,255,255,0.08)] flex justify-between items-center text-[11px] text-gray-500 uppercase tracking-widest font-bold" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                  <div className="flex flex-col gap-2">
+                    <div className="px-4 py-2 mb-2 flex justify-between items-center text-[11px] text-gray-500 uppercase tracking-widest font-bold">
                       <span>Top Results</span>
                       <span>{results.length} found</span>
                     </div>
@@ -161,33 +161,38 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
                       const finalUrl = `${basePath}${basePath.includes('?') ? '&' : '?'}search=${encodeURIComponent(searchQuery)}${hash}`;
                       
                       return (
-                        <Link 
-                          key={result.item.id} 
-                          to={finalUrl}
-                          className={`block px-7 py-6 hover:bg-[rgba(255,255,255,0.03)] transition-colors ${idx !== results.length - 1 ? 'border-b border-[rgba(255,255,255,0.04)]' : ''} group`}
-                          onClick={() => {
-                            setIsSearchFocused(false)
-                            setSearchQuery('')
-                          }}
-                        >
-                          <div className="flex justify-between items-start mb-3">
-                            <h4 className="text-[#0A84FF] text-[17px] font-semibold tracking-tight">
-                              <HighlightText text={result.item.title} highlight={searchQuery} />
-                            </h4>
-                            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-300" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
-                              {getCategoryIcon(result.item.category)}
-                              {result.item.category}
-                            </span>
-                          </div>
-                          <p className="text-[14px] text-gray-400 leading-relaxed tracking-wide">
-                            <HighlightText text={result.item.description} highlight={searchQuery} />
-                          </p>
-                        </Link>
+                        <div key={result.item.id}>
+                          <Link 
+                            to={finalUrl}
+                            className="block px-6 py-5 rounded-2xl hover:bg-[rgba(255,255,255,0.04)] transition-all duration-200 group"
+                            onClick={() => {
+                              setIsSearchFocused(false)
+                              setSearchQuery('')
+                            }}
+                          >
+                            <div className="flex justify-between items-start mb-4">
+                              <h4 className="text-[#0A84FF] text-[16px] font-semibold tracking-tight">
+                                <HighlightText text={result.item.title} highlight={searchQuery} />
+                              </h4>
+                              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-300" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+                                {getCategoryIcon(result.item.category)}
+                                {result.item.category}
+                              </span>
+                            </div>
+                            <p className="text-[14px] text-gray-400 leading-relaxed tracking-wide">
+                              <HighlightText text={result.item.description} highlight={searchQuery} />
+                            </p>
+                          </Link>
+                          {/* Elegant Separator Line */}
+                          {idx !== results.length - 1 && (
+                            <div className="h-px w-[90%] mx-auto bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.08)] to-transparent my-1" />
+                          )}
+                        </div>
                       )
                     })}
                   </div>
                 ) : (
-                  <div className="py-16 px-8 text-center text-gray-500" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                  <div className="py-16 px-8 text-center text-gray-500">
                     <Search className="mx-auto mb-5 opacity-30 text-[#0A84FF]" size={48} />
                     <p className="text-[17px] text-gray-300 font-semibold tracking-tight">No results for "{searchQuery}"</p>
                     <p className="text-[14px] mt-3 text-gray-500 tracking-wide">Make sure all words are spelled correctly.</p>
