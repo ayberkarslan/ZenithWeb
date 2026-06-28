@@ -48,7 +48,7 @@ export default function VehicleDesign() {
         {/* Overlay gradient so text is readable */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#030712] pointer-events-none z-0"></div>
 
-        <div className="relative z-10 container flex flex-col items-center text-center mt-32 pointer-events-none">
+        <div className="relative z-10 container flex flex-col items-center text-center pointer-events-none" style={{ paddingTop: '8rem' }}>
           <motion.h1 
             className="text-6xl md:text-8xl font-bold tracking-tighter mb-4"
             initial={{ opacity: 0, y: 30 }}
@@ -67,7 +67,8 @@ export default function VehicleDesign() {
           </motion.p>
           
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 border-t border-gray-800/60 pt-12 w-full max-w-4xl backdrop-blur-sm bg-black/10 rounded-3xl p-8"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 border-t border-gray-800/60 w-full max-w-4xl backdrop-blur-sm bg-black/10 rounded-3xl p-8"
+            style={{ marginTop: '3rem' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -156,10 +157,10 @@ export default function VehicleDesign() {
       <section className="bg-[#030712] relative z-10" style={{ marginTop: '12rem', marginBottom: '12rem', paddingBottom: '4rem' }}>
         <div className="container max-w-4xl text-center border border-gray-800/60 bg-gray-900/30 rounded-3xl p-16 shadow-2xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Dive Deeper</h2>
-          <p className="text-xl text-gray-400 mb-10 leading-relaxed">
+          <p className="text-xl text-gray-400 leading-relaxed" style={{ marginBottom: '3rem' }}>
             Follow our weekly development logs to see exactly how we build, test, and iterate on these systems for SUAS 2026.
           </p>
-          <Link to="/dev-log" className="btn btn-primary inline-flex items-center text-lg px-8 py-4 rounded-full transition-transform hover:scale-105">
+          <Link to="/dev-log" className="btn btn-primary inline-flex items-center text-lg px-8 py-4 rounded-full transition-transform hover:scale-105" style={{ marginTop: '1rem' }}>
             See How We Build <ChevronRight size={24} className="ml-2" />
           </Link>
         </div>
