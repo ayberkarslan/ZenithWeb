@@ -116,7 +116,7 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
           <Link to="/team" onClick={() => setIsMenuOpen(false)}>Team</Link>
           <Link to="/sponsors" onClick={() => setIsMenuOpen(false)}>Sponsors</Link>
           
-          <div className="relative w-full max-w-[450px]" ref={searchRef}>
+          <div className="relative w-full max-w-[500px]" ref={searchRef}>
             <form className="search-form m-0" onSubmit={handleSearch} role="search">
               <label htmlFor="site-search" className="sr-only">Search the site</label>
               <div className={`search-input-wrapper transition-all duration-300 ${isSearchFocused ? 'ring-2 ring-accent bg-black/40' : ''}`}>

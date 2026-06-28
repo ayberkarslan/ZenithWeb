@@ -68,13 +68,12 @@
   font-size: 0.875rem;
   outline: none;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  width: 200px;
+  width: 500px;
 }
 
 .search-input-wrapper input:focus {
   border-color: var(--accent-color);
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-  width: 450px;
 }
 
 .theme-toggle {
