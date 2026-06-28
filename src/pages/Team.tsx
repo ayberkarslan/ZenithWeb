@@ -1,34 +1,29 @@
 import { motion } from 'framer-motion'
-import { Mail, Link2, User, Crown, Cpu, Code, Settings, Users } from 'lucide-react'
+import { Mail, Link2, User, Crown } from 'lucide-react'
 import './Team.css'
 
 const teamData = {
   electronics: [
-    { name: "Ahmet Yılmaz", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/ahmet.jpg", isLeader: true },
-    { name: "Mehmet Demir", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/mehmet.jpg", isLeader: false }
+    { name: "Ahmet Yılmaz", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: true },
+    { name: "Mehmet Demir", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
   ],
   software: [
-    { name: "Ayşe Kaya", role: "Harita Müh. / 2. Sınıf", image: "/team/ayse.jpg", isLeader: false },
-    { name: "Fatma Çelik", role: "Mekatronik Müh. / 1. Sınıf", image: "/team/fatma.jpg", isLeader: false },
-    { name: "Ali Yıldız", role: "Kontrol ve Otomasyon Müh. / Hazırlık", image: "/team/ali.jpg", isLeader: false }
+    { name: "Ayşe Kaya", role: "Harita Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
+    { name: "Fatma Çelik", role: "Mekatronik Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
+    { name: "Ali Yıldız", role: "Kontrol ve Otomasyon Müh. / Hazırlık", image: "/team/placeholder.jpg", isLeader: false }
   ],
   mechanics: [
-    { name: "Veli Şahin", role: "Makine Müh. / 1. Sınıf", image: "/team/veli.jpg", isLeader: false },
-    { name: "Hasan Öz", role: "Makine Müh. / 1. Sınıf", image: "/team/hasan.jpg", isLeader: false }
+    { name: "Veli Şahin", role: "Makine Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
+    { name: "Hasan Öz", role: "Makine Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
   ],
   organization: [
-    { name: "Zeynep Arslan", role: "Departman / Sınıf", image: "/team/zeynep.jpg", isLeader: false }
+    { name: "Zeynep Arslan", role: "Departman / Sınıf", image: "/team/placeholder.jpg", isLeader: false }
   ]
 }
 
-function TeamSection({ title, members, icon: Icon, align = "right" }: { title: string, members: any[], icon: any, align?: "left" | "right" }) {
+function TeamSection({ title, members }: { title: string, members: any[] }) {
   return (
     <div className="mb-32 relative overflow-visible">
-      {/* Floating Graphic Background */}
-      <div className={`absolute top-1/2 -translate-y-1/2 ${align === "right" ? "-right-10 md:-right-32" : "-left-10 md:-left-32"} opacity-[0.04] text-accent pointer-events-none select-none z-0 transform ${align === "right" ? "rotate-12" : "-rotate-12"}`}>
-        <Icon size={400} />
-      </div>
-
       <div className="relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center tracking-wider">{title}</h2>
         <div className="team-grid">
@@ -65,22 +60,32 @@ function TeamSection({ title, members, icon: Icon, align = "right" }: { title: s
 
 export default function Team() {
   return (
-    <div className="pt-24 pb-16 container min-h-screen overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="text-5xl font-bold mb-4 text-center">OUR TEAM</h1>
-        <p className="text-xl text-muted max-w-2xl mb-24 mx-auto text-center">
-          YTU UASK - ZENITH Döner Kanat İHA Takımı
-        </p>
+    <div 
+      className="pt-24 pb-16 min-h-screen relative"
+      style={{ 
+        backgroundImage: 'linear-gradient(rgba(10, 15, 30, 0.85), rgba(5, 10, 20, 0.95)), url(/blueprint.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      <div className="container mx-auto relative z-10 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-5xl font-bold mb-4 text-center">OUR TEAM</h1>
+          <p className="text-xl text-muted max-w-2xl mb-24 mx-auto text-center">
+            YTU UASK - ZENITH Döner Kanat İHA Takımı
+          </p>
 
-        <TeamSection title="Electronics" members={teamData.electronics} icon={Cpu} align="left" />
-        <TeamSection title="Software" members={teamData.software} icon={Code} align="right" />
-        <TeamSection title="Mechanics" members={teamData.mechanics} icon={Settings} align="left" />
-        <TeamSection title="Organization" members={teamData.organization} icon={Users} align="right" />
-      </motion.div>
+          <TeamSection title="Electronics" members={teamData.electronics} />
+          <TeamSection title="Software" members={teamData.software} />
+          <TeamSection title="Mechanics" members={teamData.mechanics} />
+          <TeamSection title="Organization" members={teamData.organization} />
+        </motion.div>
+      </div>
     </div>
   )
 }
