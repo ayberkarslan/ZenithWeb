@@ -31,7 +31,7 @@ export default function VehicleDesign() {
     <div className="vehicle-design-page bg-[#030712] text-white min-h-screen font-sans">
       
       {/* SpaceX Style Hero */}
-      <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex flex-col items-center justify-start pt-32 md:pt-40 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Canvas camera={{ position: [0, 2, 8], fov: 45 }}>
             <ambientLight intensity={0.7} />
@@ -46,9 +46,9 @@ export default function VehicleDesign() {
         </div>
         
         {/* Overlay gradient so text is readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#030712] pointer-events-none z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-[#030712] pointer-events-none z-0"></div>
 
-        <div className="relative z-10 container flex flex-col items-center text-center pointer-events-none" style={{ marginTop: '2rem' }}>
+        <div className="relative z-10 container flex flex-col items-center text-center pointer-events-none">
           <motion.h1 
             className="text-6xl md:text-8xl font-bold tracking-tighter mb-4"
             initial={{ opacity: 0, y: 30 }}
