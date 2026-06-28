@@ -34,7 +34,13 @@ export default function Sponsors() {
               </div>
               <div className="sponsor-info mt-4 text-center border-t border-border pt-4">
                 <h3 className="font-bold">{sponsor.name}</h3>
-                <span className="text-accent text-sm uppercase tracking-wider font-bold">{sponsor.tier} Partner</span>
+                <span className={`text-sm uppercase tracking-wider font-bold drop-shadow-md ${
+                  sponsor.tier === 'Platinum' ? 'text-[#E5E4E2]' : 
+                  sponsor.tier === 'Gold' ? 'text-[#FFD700]' : 
+                  'text-accent'
+                }`}>
+                  {sponsor.tier} Partner
+                </span>
               </div>
             </a>
           ))}
