@@ -41,23 +41,33 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   const searchIndex = useMemo(() => buildSearchIndex(), [])
   const fuse = useMemo(() => new Fuse(searchIndex, {
     keys: [
-      { name: 'title', weight: 2.0 },
-      { name: 'category', weight: 1.5 },
-      { name: 'description', weight: 1.0 }
+      { name: 'title', weight: 3.0 },
+      { name: 'description', weight: 2.0 },
+      { name: 'category', weight: 1.0 }
     ],
-    threshold: 0.4,
+    threshold: 0.3, // Smarter typo tolerance without returning garbage
+    ignoreLocation: true, // CRITICAL: Find words anywhere in the text, not just at the start
+    useExtendedSearch: true,
     includeScore: true,
   }), [searchIndex])
 
   const results = useMemo(() => {
     if (!searchQuery.trim()) return []
+    // Allow fuzzy logic but prioritize words being present
+    // Simple trick: prepend single quote to make it require exact substring match if they type multiple words
+    // Or just let Fuse do its magic with ignoreLocation.
     return fuse.search(searchQuery).slice(0, 5) // Show top 5 results
   }, [searchQuery, fuse])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (results.length > 0) {
-      navigate(results[0].item.url)
+      const result = results[0];
+      const urlParts = result.item.url.split('#');
+      const basePath = urlParts[0];
+      const hash = urlParts[1] ? `#${urlParts[1]}` : '';
+      const finalUrl = `${basePath}${basePath.includes('?') ? '&' : '?'}search=${encodeURIComponent(searchQuery)}${hash}`;
+      navigate(finalUrl);
       setSearchQuery('')
       setIsSearchFocused(false)
     }
@@ -107,8 +117,12 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
               <div 
-                className="absolute top-full right-0 mt-6 w-[550px] border-2 border-blue-500/60 rounded-3xl shadow-[0_0_40px_rgba(37,99,235,0.25)] overflow-hidden z-50 transition-all duration-300"
-                style={{ backgroundColor: '#050505' }}
+                className="absolute top-full right-0 mt-6 w-[550px] rounded-3xl overflow-hidden z-50 transition-all duration-300"
+                style={{ 
+                  backgroundColor: '#050505', 
+                  border: '2px solid #3b82f6', // Force explicit blue border
+                  boxShadow: '0 0 30px rgba(59, 130, 246, 0.4)' // Stronger glow 
+                }}
               >
                 {results.length > 0 ? (
                   <div className="flex flex-col">
@@ -117,7 +131,6 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                       <span>{results.length} found</span>
                     </div>
                     {results.map((result, idx) => {
-                      // Inject ?search=query into the url before the hash
                       const urlParts = result.item.url.split('#');
                       const basePath = urlParts[0];
                       const hash = urlParts[1] ? `#${urlParts[1]}` : '';
@@ -134,8 +147,8 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                           }}
                         >
                           <div className="flex justify-between items-start mb-3">
-                            <h4 className="text-white text-lg font-bold group-hover:text-accent transition-colors">{result.item.title}</h4>
-                            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-800/80 text-xs font-bold text-gray-300" style={{ backgroundColor: '#000000' }}>
+                            <h4 className="text-white text-lg font-bold group-hover:text-[#3b82f6] transition-colors">{result.item.title}</h4>
+                            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-gray-300" style={{ backgroundColor: '#000000', border: '1px solid #333' }}>
                               {getCategoryIcon(result.item.category)}
                               {result.item.category}
                             </span>
