@@ -109,12 +109,12 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
           <span className="brand-text">YTU ZENITH</span>
         </Link>
 
-        <nav className={`nav-links ${isMenuOpen ? 'open' : ''} flex-1 flex justify-end items-center gap-4 lg:gap-8`} role="navigation" aria-label="Main Navigation">
-          <Link to="/" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Home</Link>
-          <Link to="/vehicle-design" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Vehicle Design</Link>
-          <Link to="/dev-log" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Dev Log</Link>
-          <Link to="/team" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Team</Link>
-          <Link to="/sponsors" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Sponsors</Link>
+        <nav className={`nav-links ${isMenuOpen ? 'open' : ''} flex-1 flex flex-row flex-nowrap justify-end items-center gap-4 lg:gap-8`} style={{ whiteSpace: 'nowrap' }} role="navigation" aria-label="Main Navigation">
+          <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0">Home</Link>
+          <Link to="/vehicle-design" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0">Vehicle&nbsp;Design</Link>
+          <Link to="/dev-log" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0">Dev&nbsp;Log</Link>
+          <Link to="/team" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0">Team</Link>
+          <Link to="/sponsors" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0">Sponsors</Link>
           
           <div className="relative w-full max-w-[500px] ml-4 lg:ml-auto flex-shrink-0" ref={searchRef}>
             <form className="search-form m-0" onSubmit={handleSearch} role="search">
