@@ -107,7 +107,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
               <div 
-                className="absolute top-full right-0 mt-6 w-[550px] border border-accent/30 rounded-3xl shadow-[0_0_40px_rgba(10,132,255,0.15)] overflow-hidden z-50 transition-all duration-300"
+                className="absolute top-full right-0 mt-6 w-[550px] border-2 border-blue-500/60 rounded-3xl shadow-[0_0_40px_rgba(37,99,235,0.25)] overflow-hidden z-50 transition-all duration-300"
                 style={{ backgroundColor: '#050505' }}
               >
                 {results.length > 0 ? (
