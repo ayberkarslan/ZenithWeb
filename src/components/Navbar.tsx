@@ -103,7 +103,7 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
 };
 
   return (
-    <header className="navbar glass" role="banner">
+    <header className="navbar bg-black/65 backdrop-blur-2xl backdrop-saturate-[1.8] border-b border-white/5" role="banner">
       <div className="container mx-auto px-4 navbar-content flex justify-between items-center">
         <Link to="/" className="brand flex-shrink-0" aria-label="YTU Zenith Home">
           <span className="brand-text">YTU ZENITH</span>
