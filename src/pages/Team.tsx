@@ -4,20 +4,20 @@ import './Team.css'
 
 const teamData = {
   electronics: [
-    { name: "Ahmet Yılmaz", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: true },
-    { name: "Mehmet Demir", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
+    { name: "Huzeyfe Fazıl Koç", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: true },
+    { name: "Yusuf Yasir İncal", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
   ],
   software: [
-    { name: "Ayşe Kaya", role: "Harita Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
-    { name: "Fatma Çelik", role: "Mekatronik Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
-    { name: "Ali Yıldız", role: "Kontrol ve Otomasyon Müh. / Hazırlık", image: "/team/placeholder.jpg", isLeader: false }
+    { name: "Muharrem Sait Çoktaş", role: "Harita Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
+    { name: "Muhammet Ayberk Arslan", role: "Kontrol ve Otomasyon Müh. / Hazırlık", image: "/team/placeholder.jpg", isLeader: false },
+    { name: "Yusuf Kamil Turan", role: "Mekatronik Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
   ],
   mechanics: [
-    { name: "Veli Şahin", role: "Makine Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
-    { name: "Hasan Öz", role: "Makine Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
+    { name: "Selim Keleşoğlu", role: "Makine Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
+    { name: "Ayaz Şenol", role: "Makine Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
   ],
   organization: [
-    { name: "Zeynep Arslan", role: "Departman / Sınıf", image: "/team/placeholder.jpg", isLeader: false }
+    { name: "Ad Soyad", role: "Departman / Sınıf", image: "/team/placeholder.jpg", isLeader: false }
   ]
 }
 
@@ -31,7 +31,7 @@ function TeamSection({ title, members }: { title: string, members: any[] }) {
             <div key={idx} className="team-card glass p-8 relative flex flex-col items-center">
               {member.isLeader && (
                 <div className="leader-badge absolute top-4 right-4 bg-accent text-white text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-[0_0_15px_rgba(10,132,255,0.6)] z-20">
-                  <Crown size={14} /> LİDER
+                  <Crown size={14} /> TEAM LEADER
                 </div>
               )}
               {/* Photo Area */}
