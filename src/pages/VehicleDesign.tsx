@@ -18,7 +18,7 @@ function RealDrone() {
   })
 
   return (
-    <group position={[0, -0.5, 0]} ref={droneRef}>
+    <group position={[0, -1.5, 0]} ref={droneRef}>
       <primitive object={scene} scale={15} />
     </group>
   )
@@ -39,7 +39,7 @@ export default function VehicleDesign() {
             <Float speed={2} rotationIntensity={0.2} floatIntensity={1.5}>
               <RealDrone />
             </Float>
-            <ContactShadows position={[0, -2, 0]} opacity={0.6} scale={30} blur={3} far={4} color="#0A84FF" />
+            <ContactShadows position={[0, -3, 0]} opacity={0.6} scale={30} blur={3} far={4} color="#0A84FF" />
             <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 1.5} autoRotate autoRotateSpeed={0.5} />
             <Environment preset="city" />
           </Canvas>
@@ -48,7 +48,7 @@ export default function VehicleDesign() {
         {/* Overlay gradient so text is readable */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#030712] pointer-events-none z-0"></div>
 
-        <div className="relative z-10 container flex flex-col items-center text-center pointer-events-none" style={{ paddingTop: '8rem' }}>
+        <div className="relative z-10 container flex flex-col items-center text-center pointer-events-none" style={{ marginTop: '2rem' }}>
           <motion.h1 
             className="text-6xl md:text-8xl font-bold tracking-tighter mb-4"
             initial={{ opacity: 0, y: 30 }}
