@@ -137,7 +137,7 @@ export default function Home() {
               transition={{ duration: 0.7 }}
             >
               YTU<br/>
-              <span className="text-accent">ZENITH</span>
+              <span className="text-accent">UASK</span>
             </motion.h1>
             <motion.p 
               className="hero-subtitle-2d"
@@ -145,7 +145,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              PIONEERING AUTONOMOUS FLIGHT
+              ROTARY WING UAV TEAM
             </motion.p>
             <motion.div 
               className="hero-actions"
@@ -154,7 +154,7 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link to="/vehicle-design" className="btn btn-primary">
-                Discover Vehicle <ArrowRight size={16} />
+                Discover our SUAS 2026 Device <ArrowRight size={16} />
               </Link>
               <Link to="/dev-log" className="hero-link text-accent">
                 Read Dev Logs <ChevronRight size={16} />

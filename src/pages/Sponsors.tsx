@@ -53,7 +53,7 @@ export default function Sponsors() {
           <p className="text-muted max-w-2xl mx-auto mb-8">
             Join us in shaping the future of autonomous systems. Partnering with YTU Zenith provides your company with access to top engineering talent and global brand visibility at the SUAS competition.
           </p>
-          <a href="mailto:contact@ytuzenith.com" className="btn btn-primary">Download Sponsorship Package</a>
+          <a href="mailto:contact@ytuzenith.com" className="btn btn-primary">Mail us</a>
         </div>
       </motion.div>
     </div>
