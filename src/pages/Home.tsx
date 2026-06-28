@@ -154,7 +154,7 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link to="/vehicle-design" className="btn btn-primary">
-                Discover our SUAS 2026 Device <ArrowRight size={16} />
+                Discover our SUAS 2026 Drone <ArrowRight size={16} />
               </Link>
               <Link to="/dev-log" className="hero-link text-accent">
                 Read Dev Logs <ChevronRight size={16} />
