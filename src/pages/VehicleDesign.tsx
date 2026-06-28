@@ -131,21 +131,68 @@ export default function VehicleDesign() {
           </div>
 
           {/* Section 2: Avionics */}
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
             <div className="h-[500px] rounded-3xl overflow-hidden border border-gray-800/60 shadow-2xl md:order-1 order-2">
               <img src="/zifir.jpg" alt="Avionics testing" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
             <div className="md:order-2 order-1">
               <div className="text-accent text-sm font-bold tracking-widest uppercase mb-3">02 / Avionics</div>
-              <h3 className="text-3xl font-bold mb-6">Triple Redundant State Estimation</h3>
+              <h3 className="text-3xl font-bold mb-6">Pixhawk & Jetson Synergy</h3>
               <p className="text-gray-400 mb-8 leading-relaxed text-lg">
-                A single sensor failure mid-flight means mission failure. We selected the Pixhawk Cube Orange over standard controllers due to its isolated, triple-redundant IMU architecture, allowing the EKF3 estimator to seamlessly reject faulty sensor data during aggressive maneuvers.
+                The brain of ZIFIR X1 is a tightly coupled architecture between the <strong>Pixhawk Cube Orange</strong> and the <strong>NVIDIA Jetson Orin Nano</strong>. The Pixhawk handles hard-real-time flight dynamics and triple-redundant state estimation, while the Jetson provides massive GPU compute for high-level AI tasks. Operating over a high-baud serial bridge, this duo offers flawless plug-and-play compatibility and zero-bottleneck data throughput.
               </p>
               <div className="bg-gray-900/50 border border-gray-800 p-6 rounded-2xl border-l-4 border-l-accent">
-                <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Test #14: Vibration Rejection</h4>
+                <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Test #14: High-Bandwidth Telemetry</h4>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  During 15-knot gust tests, the isolated IMU maintained a state estimation variance of less than 0.05 m/s. This stability is what directly enables our autonomous payload drop precision.
+                  During intensive flight maneuvers, the Jetson streams offboard control setpoints to the Pixhawk at 100Hz with less than 2ms latency, enabling buttery-smooth autonomous trajectory tracking.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 3: Software / Mission Planner */}
+          <div className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
+            <div>
+              <div className="text-accent text-sm font-bold tracking-widest uppercase mb-3">03 / Software</div>
+              <h3 className="text-3xl font-bold mb-6">Visual Node-Based Mission Planner</h3>
+              <p className="text-gray-400 mb-8 leading-relaxed text-lg">
+                Instead of hardcoding missions or relying on generic ground control stations, we developed our own proprietary node-based mission planning software. This tool allows us to visually drag, drop, and connect mission waypoints, payload drop triggers, and camera activation nodes into a cohesive, logic-driven flowchart.
+              </p>
+              <div className="bg-gray-900/50 border border-gray-800 p-6 rounded-2xl">
+                <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Operational Advantage</h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  During SUAS, mission coordinates are given just before flight. Our visual node system reduces mission generation time from 10 minutes to under 60 seconds, drastically minimizing human error under pressure.
+                </p>
+              </div>
+            </div>
+            <div className="h-[500px] rounded-3xl overflow-hidden border border-gray-800/60 shadow-2xl">
+              <img src="/node.jpg" alt="Node Based Mission Planner" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+            </div>
+          </div>
+
+          {/* Section 4: AI & Vision */}
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="h-[500px] rounded-3xl overflow-hidden border border-gray-800/60 shadow-2xl md:order-1 order-2">
+              <img src="/yolo.jpg" alt="YOLO Object Detection" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+            </div>
+            <div className="md:order-2 order-1">
+              <div className="text-accent text-sm font-bold tracking-widest uppercase mb-3">04 / Computer Vision</div>
+              <h3 className="text-3xl font-bold mb-6">Custom Trained YOLO Architecture</h3>
+              <p className="text-gray-400 mb-8 leading-relaxed text-lg">
+                For the SUAS target identification task, standard pre-trained models are insufficient. We painstakingly collected, augmented, and labeled a dataset of over 10,000 aerial images of specific alphanumeric targets, training our own specialized YOLO model.
+              </p>
+              <div className="bg-gray-900/50 border border-gray-800 p-6 rounded-2xl border-l-4 border-l-accent">
+                <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Performance Metrics</h4>
+                <ul className="text-gray-400 space-y-4">
+                  <li className="flex justify-between border-b border-gray-800 pb-3">
+                    <span className="font-medium text-white">Inference Speed</span> 
+                    <span className="text-accent font-bold">45 FPS on Jetson Orin</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span className="font-medium text-white">mAP@0.5</span> 
+                    <span className="text-accent font-bold">96.8%</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
