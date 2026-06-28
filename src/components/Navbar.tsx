@@ -117,16 +117,17 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
               <div 
-                className="absolute top-full right-0 mt-6 w-[550px] rounded-3xl overflow-hidden z-50 transition-all duration-300"
+                className="absolute top-full right-0 mt-3 w-[450px] rounded-3xl overflow-hidden z-50 transition-all duration-300"
                 style={{ 
-                  backgroundColor: '#050505', 
-                  border: '2px solid #3b82f6', // Force explicit blue border
-                  boxShadow: '0 0 30px rgba(59, 130, 246, 0.4)' // Stronger glow 
+                  backgroundColor: '#121212', // Slightly lighter than pitch black for Apple feel
+                  border: '1px solid rgba(255,255,255,0.1)', // Very subtle border
+                  boxShadow: '0 10px 40px rgba(0,0,0,0.5)', // Apple-style soft drop shadow, no harsh neon
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
                 }}
               >
                 {results.length > 0 ? (
                   <div className="flex flex-col">
-                    <div className="px-6 py-4 border-b border-gray-800/80 flex justify-between items-center text-xs text-gray-400 uppercase tracking-widest font-bold" style={{ backgroundColor: '#0a0a0a' }}>
+                    <div className="px-5 py-2.5 border-b border-gray-800/50 flex justify-between items-center text-[10px] text-gray-500 uppercase tracking-widest font-semibold" style={{ backgroundColor: '#0a0a0a' }}>
                       <span>Top Results</span>
                       <span>{results.length} found</span>
                     </div>
@@ -140,20 +141,20 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                         <Link 
                           key={result.item.id} 
                           to={finalUrl}
-                          className={`block p-6 hover:bg-[#111111] transition-colors ${idx !== results.length - 1 ? 'border-b border-gray-800/40' : ''} group`}
+                          className={`block px-5 py-4 hover:bg-[#1a1a1a] transition-colors ${idx !== results.length - 1 ? 'border-b border-gray-800/40' : ''} group`}
                           onClick={() => {
                             setIsSearchFocused(false)
                             setSearchQuery('')
                           }}
                         >
-                          <div className="flex justify-between items-start mb-3">
-                            <h4 className="text-white text-lg font-bold group-hover:text-[#3b82f6] transition-colors">{result.item.title}</h4>
-                            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-gray-300" style={{ backgroundColor: '#000000', border: '1px solid #333' }}>
+                          <div className="flex justify-between items-start mb-1.5">
+                            <h4 className="text-white text-base font-semibold group-hover:text-[#0A84FF] transition-colors tracking-tight">{result.item.title}</h4>
+                            <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold text-gray-300" style={{ backgroundColor: '#222' }}>
                               {getCategoryIcon(result.item.category)}
                               {result.item.category}
                             </span>
                           </div>
-                          <p className="text-sm text-gray-400 leading-relaxed">
+                          <p className="text-[13px] text-gray-400 leading-relaxed tracking-tight">
                             {result.item.description}
                           </p>
                         </Link>
@@ -161,10 +162,10 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                     })}
                   </div>
                 ) : (
-                  <div className="p-12 text-center text-gray-500" style={{ backgroundColor: '#050505' }}>
-                    <Search className="mx-auto mb-6 opacity-20" size={48} />
-                    <p className="text-xl text-gray-300">No results found</p>
-                    <p className="text-sm mt-3 text-gray-600">Try searching for "YOLO", "Pixhawk", or a team member</p>
+                  <div className="py-12 px-6 text-center text-gray-500" style={{ backgroundColor: '#121212' }}>
+                    <Search className="mx-auto mb-4 opacity-30 text-gray-400" size={36} />
+                    <p className="text-[15px] text-gray-300 font-medium">No results for "{searchQuery}"</p>
+                    <p className="text-[13px] mt-2 text-gray-500">Try searching for "YOLO" or "Pixhawk"</p>
                   </div>
                 )}
               </div>
