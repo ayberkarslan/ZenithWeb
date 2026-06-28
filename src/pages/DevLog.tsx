@@ -14,38 +14,11 @@ interface LogEntry {
   image: string | null
 }
 
-const devLogs: LogEntry[] = [
-  {
-    id: 1,
-    tag: "Avionics",
-    date: "May 15, 2026",
-    title: "Autonomous Waypoint Mission Success",
-    shortDesc: "Tuned L1 navigation controller parameters for heavier payloads, resulting in successful autonomous flight.",
-    content: "### Problem\nPrevious flights resulted in 2-3 meter cross-track error in high winds. The drone struggled to maintain a straight line between distant waypoints.\n\n### Analysis\nLog analysis via PX4 showed the L1 navigation controller parameters were tuned too aggressively for our new heavier payload. The excessive overshoot was a classic sign of underdamping.\n\n### Solution & Lessons Learned\nReduced nav_l1_period to 12.0s and increased nav_l1_damping to 0.85. The vehicle now smoothly tracks lines even with 15-knot gusts. We learned that payload mass drastically changes aerodynamic damping requirements.",
-    status: "success",
-    image: null
-  },
-  {
-    id: 2,
-    tag: "Computer Vision",
-    date: "May 02, 2026",
-    title: "Real-time Object Detection Integration",
-    shortDesc: "Deployed YOLOv8 on Jetson Orin NX for real-time target acquisition.",
-    content: "### The Challenge\nThe SUAS mission requires us to detect and classify alphanumeric targets on the ground from 100+ feet in the air, in real time.\n\n### Implementation\nWe integrated a custom-trained YOLOv8 model running on an onboard NVIDIA Jetson Orin NX. The telemetry overlay is fused directly with the camera feed to geolocate the targets.\n\n### Results\nInference time is down to 12ms. Accuracy is hovering around 94% on test datasets. We're very confident in this pipeline.",
-    status: "success",
-    image: "/log-cv.jpg"
-  },
-  {
-    id: 3,
-    tag: "Hardware",
-    date: "April 22, 2026",
-    title: "Motor Vibration & Compass Drift Issue",
-    shortDesc: "Identified and fixed severe compass variance caused by arm resonance.",
-    content: "### Problem\nDuring hover tests, EKF2 reported severe compass variance. The drone entered failsafe mode and initiated an emergency landing.\n\n### Analysis\nFFT data from the blackbox indicated excessive vibrations at 80Hz reaching the flight controller. The 3K carbon fiber arms were resonating exactly at the hover RPM.\n\n### Solution\nWe redesigned the motor mounts to include TPU isolation dampers, decoupling the high-frequency vibrations from the frame. We also moved the GPS/Compass module to a 15cm mast to reduce electromagnetic interference from the high-current ESC wires.",
-    status: "failure",
-    image: "/log-motor.jpg"
-  }
-]
+const modules = import.meta.glob('./blog/*.ts', { eager: true })
+const devLogs: LogEntry[] = Object.values(modules)
+  .map((mod: any) => mod.log as LogEntry)
+  .filter(Boolean)
+  .sort((a, b) => b.id - a.id) // Sort by newest (highest id) first
 
 const ALL_TAGS = ["All", "Avionics", "Computer Vision", "Hardware"]
 
