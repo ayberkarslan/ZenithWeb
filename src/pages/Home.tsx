@@ -181,6 +181,32 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Achievements Section */}
+      <section className="section relative z-10">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl text-center mb-12">Our <span className="text-accent">Achievements</span></h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="card text-center hover:border-accent/50 transition-colors group cursor-default">
+                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform">🏆</div>
+                <h3 className="text-2xl mb-2 font-bold">Achievement 1</h3>
+                <p className="text-muted">Placeholder for Teknofest or past SUAS success story. We will fill this in soon.</p>
+              </div>
+              <div className="card text-center hover:border-accent/50 transition-colors group cursor-default">
+                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform">🚀</div>
+                <h3 className="text-2xl mb-2 font-bold">Achievement 2</h3>
+                <p className="text-muted">Placeholder for another major competition result or technical milestone.</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Who We Are Section */}
       <section className="section bg-secondary relative overflow-hidden">
         <div className="container relative z-10">
