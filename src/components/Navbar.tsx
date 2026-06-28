@@ -104,19 +104,19 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
 
   return (
     <header className="navbar glass" role="banner">
-      <div className="w-full max-w-[1500px] mx-auto px-6 lg:px-10 flex justify-between items-center">
+      <div className="container mx-auto px-4 navbar-content flex justify-between items-center">
         <Link to="/" className="brand flex-shrink-0" aria-label="YTU Zenith Home">
           <span className="brand-text">YTU ZENITH</span>
         </Link>
 
-        <nav className={`nav-links ${isMenuOpen ? 'open' : ''} flex-1 flex justify-end items-center gap-6 lg:gap-10`} role="navigation" aria-label="Main Navigation">
-          <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+        <nav className={`nav-links ${isMenuOpen ? 'open' : ''} flex-1 flex justify-end items-center gap-4 lg:gap-8`} role="navigation" aria-label="Main Navigation">
+          <Link to="/" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Home</Link>
           <Link to="/vehicle-design" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Vehicle Design</Link>
           <Link to="/dev-log" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Dev Log</Link>
-          <Link to="/team" onClick={() => setIsMenuOpen(false)}>Team</Link>
-          <Link to="/sponsors" onClick={() => setIsMenuOpen(false)}>Sponsors</Link>
+          <Link to="/team" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Team</Link>
+          <Link to="/sponsors" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Sponsors</Link>
           
-          <div className="relative w-full max-w-[500px] ml-4 lg:ml-8 flex-shrink-0" ref={searchRef}>
+          <div className="relative w-full max-w-[500px] ml-4 lg:ml-auto flex-shrink-0" ref={searchRef}>
             <form className="search-form m-0" onSubmit={handleSearch} role="search">
               <label htmlFor="site-search" className="sr-only">Search the site</label>
               <div className={`search-input-wrapper transition-all duration-300 ${isSearchFocused ? 'ring-2 ring-accent bg-black/40' : ''}`}>
