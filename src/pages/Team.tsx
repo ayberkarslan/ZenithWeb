@@ -63,7 +63,7 @@ export default function Team() {
     <div 
       className="pt-24 pb-32 min-h-screen relative"
       style={{ 
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(/blueprint.jpg)',
+        backgroundImage: 'linear-gradient(rgba(10, 20, 40, 0.3), rgba(5, 10, 20, 0.5)), url(/blueprint.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
