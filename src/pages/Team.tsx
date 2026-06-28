@@ -23,9 +23,10 @@ const teamData = {
 
 function TeamSection({ title, members }: { title: string, members: any[] }) {
   return (
-    <div className="mb-32 relative overflow-visible">
+    <div className="mb-48 mt-16 relative overflow-visible">
+
       <div className="relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center tracking-wider">{title}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center tracking-wider">{title}</h2>
         <div className="team-grid">
           {members.map((member, idx) => (
             <div key={idx} className="team-card glass p-8 relative flex flex-col items-center">
@@ -61,7 +62,7 @@ function TeamSection({ title, members }: { title: string, members: any[] }) {
 export default function Team() {
   return (
     <div 
-      className="pt-24 pb-32 min-h-screen relative"
+      className="pt-40 pb-64 min-h-screen relative"
       style={{ 
         backgroundImage: 'linear-gradient(rgba(10, 20, 40, 0.3), rgba(5, 10, 20, 0.5)), url(/blueprint.jpg)',
         backgroundSize: 'cover',
@@ -76,10 +77,9 @@ export default function Team() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-5xl font-bold mb-4 text-center">OUR TEAM</h1>
-          <p className="text-xl text-muted max-w-2xl mb-24 mx-auto text-center">
+          <p className="text-xl text-muted max-w-2xl mb-32 mx-auto text-center">
             YTU UASK - ZENITH Döner Kanat İHA Takımı
           </p>
-
           <TeamSection title="Electronics" members={teamData.electronics} />
           <TeamSection title="Software" members={teamData.software} />
           <TeamSection title="Mechanics" members={teamData.mechanics} />
