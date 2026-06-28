@@ -107,12 +107,12 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
               <div 
-                className="absolute top-full right-0 mt-4 w-[500px] border border-gray-700 rounded-2xl shadow-2xl overflow-hidden z-50"
+                className="absolute top-full right-0 mt-6 w-[550px] border border-accent/30 rounded-3xl shadow-[0_0_40px_rgba(10,132,255,0.15)] overflow-hidden z-50 transition-all duration-300"
                 style={{ backgroundColor: '#050505' }}
               >
                 {results.length > 0 ? (
                   <div className="flex flex-col">
-                    <div className="px-5 py-3 border-b border-gray-800 flex justify-between items-center text-xs text-gray-400 uppercase tracking-widest font-bold" style={{ backgroundColor: '#0a0a0a' }}>
+                    <div className="px-6 py-4 border-b border-gray-800/80 flex justify-between items-center text-xs text-gray-400 uppercase tracking-widest font-bold" style={{ backgroundColor: '#0a0a0a' }}>
                       <span>Top Results</span>
                       <span>{results.length} found</span>
                     </div>
@@ -127,20 +127,20 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                         <Link 
                           key={result.item.id} 
                           to={finalUrl}
-                          className={`block p-5 hover:bg-gray-800 transition-colors ${idx !== results.length - 1 ? 'border-b border-gray-800/50' : ''} group`}
+                          className={`block p-6 hover:bg-[#111111] transition-colors ${idx !== results.length - 1 ? 'border-b border-gray-800/40' : ''} group`}
                           onClick={() => {
                             setIsSearchFocused(false)
                             setSearchQuery('')
                           }}
                         >
-                          <div className="flex justify-between items-start mb-2">
+                          <div className="flex justify-between items-start mb-3">
                             <h4 className="text-white text-lg font-bold group-hover:text-accent transition-colors">{result.item.title}</h4>
-                            <span className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-gray-700 text-xs font-bold text-gray-300" style={{ backgroundColor: '#000000' }}>
+                            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-800/80 text-xs font-bold text-gray-300" style={{ backgroundColor: '#000000' }}>
                               {getCategoryIcon(result.item.category)}
                               {result.item.category}
                             </span>
                           </div>
-                          <p className="text-sm text-gray-400 line-clamp-2 leading-relaxed">
+                          <p className="text-sm text-gray-400 leading-relaxed">
                             {result.item.description}
                           </p>
                         </Link>
@@ -148,10 +148,10 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                     })}
                   </div>
                 ) : (
-                  <div className="p-10 text-center text-gray-500" style={{ backgroundColor: '#050505' }}>
-                    <Search className="mx-auto mb-4 opacity-20" size={40} />
-                    <p className="text-lg">No results found for "{searchQuery}"</p>
-                    <p className="text-sm mt-2">Try searching for "YOLO", "Pixhawk", or "Flight"</p>
+                  <div className="p-12 text-center text-gray-500" style={{ backgroundColor: '#050505' }}>
+                    <Search className="mx-auto mb-6 opacity-20" size={48} />
+                    <p className="text-xl text-gray-300">No results found</p>
+                    <p className="text-sm mt-3 text-gray-600">Try searching for "YOLO", "Pixhawk", or a team member</p>
                   </div>
                 )}
               </div>

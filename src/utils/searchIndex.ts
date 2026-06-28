@@ -34,7 +34,27 @@ export function buildSearchIndex(): SearchRecord[] {
     title: 'Meet the Team',
     description: 'The engineering minds behind the machine.',
     category: 'Team',
-    url: '/#team',
+    url: '/team',
+  });
+
+  const teamMembers = [
+    { name: "Huzeyfe Fazıl Koç", role: "Elektronik ve Haberleşme Müh. / Electronics Team Leader" },
+    { name: "Yusuf Yasir İncal", role: "Elektronik ve Haberleşme Müh. / Electronics Team" },
+    { name: "Muharrem Sait Çoktaş", role: "Harita Müh. / Software Team" },
+    { name: "Muhammet Ayberk Arslan", role: "Kontrol ve Otomasyon Müh. / Software Team" },
+    { name: "Yusuf Kamil Turan", role: "Mekatronik Müh. / Software Team" },
+    { name: "Selim Keleşoğlu", role: "Makine Müh. / Mechanics Team" },
+    { name: "Ayaz Şenol", role: "Makine Müh. / Mechanics Team" }
+  ];
+
+  teamMembers.forEach((m, idx) => {
+    records.push({
+      id: `member-${idx}`,
+      title: m.name,
+      description: m.role,
+      category: 'Team',
+      url: '/team' // Will jump to them if ?search=name is passed
+    });
   });
 
   // 2. Add Vehicle Design Sections
