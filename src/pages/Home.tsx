@@ -36,7 +36,7 @@ function CameraRig() {
   const defaultPos = new THREE.Vector3(0, 1.5, 6)
   const defaultTarget = new THREE.Vector3(0, 0, 0)
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (!isInteracting.current && timeoutRef.current === null && !isInitial.current) {
       camera.position.lerp(defaultPos, 2 * delta)
       if (controlsRef.current) {

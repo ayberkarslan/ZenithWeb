@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AlertTriangle, CheckCircle, ChevronRight, Maximize2, X } from 'lucide-react'
+import { AlertTriangle, CheckCircle, Maximize2, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './DevLog.css'
 

@@ -1,4 +1,4 @@
-import { Mail, Linkedin, User } from 'lucide-react'
+import { Mail, Link2, User } from 'lucide-react'
 import './Team.css'
 
 const teamData = {
@@ -37,7 +37,7 @@ function TeamSection({ title, members }: { title: string, members: any[] }) {
               
               <div className="team-socials">
                 <a href="#" className="social-link" title="Email"><Mail size={16} /></a>
-                <a href="#" className="social-link" title="LinkedIn"><Linkedin size={16} /></a>
+                <a href="#" className="social-link" title="LinkedIn"><Link2 size={16} /></a>
               </div>
             </div>
           </div>
