@@ -54,12 +54,13 @@ export default function Team() {
         <header className="page-header">
           <h1 className="page-title">OUR TEAM</h1>
           <p className="page-subtitle text-muted">
-            Talented students from different engineering disciplines united to pioneer autonomous UAV systems.
+            YTU UASK - ZENITH Döner Kanat İHA Takımı
           </p>
         </header>
 
         <div className="team-content">
-          <TeamSection title="Electronics Team" members={teamData.electronics} />
+          <TeamSection title="Team Leaders" members={teamData.electronics.slice(0, 1)} />
+          <TeamSection title="Electronics Team" members={teamData.electronics.slice(1)} />
           <TeamSection title="Software Team" members={teamData.software} />
           <TeamSection title="Mechanics & Design Team" members={teamData.mechanics} />
           <TeamSection title="Organization Team" members={teamData.organization} />

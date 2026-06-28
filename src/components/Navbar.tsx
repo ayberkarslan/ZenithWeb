@@ -1,42 +1,70 @@
-import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Search, Moon, Sun, Menu, X } from 'lucide-react'
 import './Navbar.css'
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const location = useLocation()
+interface NavbarProps {
+  theme: string;
+  toggleTheme: () => void;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+export default function Navbar({ theme, toggleTheme }: NavbarProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
 
-  useEffect(() => {
-    setIsOpen(false)
-  }, [location])
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    alert(`Search functionality for: ${searchQuery}. To be connected to Algolia or local index.`)
+    setSearchQuery('')
+  }
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container nav-container">
-        <Link to="/" className="nav-logo">
-          <span className="text-accent">YTU</span> ZENITH
+    <header className="navbar glass" role="banner">
+      <div className="container navbar-content">
+        <Link to="/" className="brand" aria-label="YTU Zenith Home">
+          <span className="brand-text">YTU ZENITH</span>
         </Link>
 
-        <div className={`nav-links ${isOpen ? 'active' : ''}`}>
-          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-          <Link to="/team" className={location.pathname === '/team' ? 'active' : ''}>Team</Link>
-          <Link to="/dev-log" className={location.pathname === '/dev-log' ? 'active' : ''}>Dev Log</Link>
-        </div>
+        <nav className={`nav-links ${isMenuOpen ? 'open' : ''}`} role="navigation" aria-label="Main Navigation">
+          <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link to="/vehicle-design" onClick={() => setIsMenuOpen(false)}>Vehicle Design</Link>
+          <Link to="/dev-log" onClick={() => setIsMenuOpen(false)}>Dev Log</Link>
+          <Link to="/team" onClick={() => setIsMenuOpen(false)}>Team</Link>
+          <Link to="/sponsors" onClick={() => setIsMenuOpen(false)}>Sponsors</Link>
+          
+          <form className="search-form" onSubmit={handleSearch} role="search">
+            <label htmlFor="site-search" className="sr-only">Search the site</label>
+            <div className="search-input-wrapper">
+              <Search className="search-icon" size={18} aria-hidden="true" />
+              <input 
+                type="search" 
+                id="site-search"
+                placeholder="Search specs, logs..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                aria-label="Search through site content"
+              />
+            </div>
+          </form>
 
-        <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <button 
+            className="theme-toggle" 
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+        </nav>
+
+        <button 
+          className="mobile-menu-btn" 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-expanded={isMenuOpen}
+          aria-label="Toggle navigation menu"
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-    </nav>
+    </header>
   )
 }
