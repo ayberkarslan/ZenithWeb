@@ -34,11 +34,13 @@ export default function Sponsors() {
               </div>
               <div className="sponsor-info mt-4 text-center border-t border-border pt-4">
                 <h3 className="font-bold">{sponsor.name}</h3>
-                <span className={`text-sm uppercase tracking-wider font-bold drop-shadow-md ${
-                  sponsor.tier === 'Platinum' ? 'text-[#E5E4E2]' : 
-                  sponsor.tier === 'Gold' ? 'text-[#FFD700]' : 
-                  'text-accent'
-                }`}>
+                <span 
+                  className="text-sm uppercase tracking-wider font-bold"
+                  style={{
+                    color: sponsor.tier === 'Platinum' ? '#E5E4E2' : sponsor.tier === 'Gold' ? '#FFD700' : 'var(--accent-color)',
+                    textShadow: sponsor.tier === 'Platinum' ? '0 0 12px rgba(229, 228, 226, 0.7)' : sponsor.tier === 'Gold' ? '0 0 12px rgba(255, 215, 0, 0.7)' : '0 0 12px rgba(10, 132, 255, 0.7)'
+                  }}
+                >
                   {sponsor.tier} Partner
                 </span>
               </div>
