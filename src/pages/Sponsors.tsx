@@ -3,10 +3,10 @@ import './Sponsors.css'
 
 export default function Sponsors() {
   const sponsors = [
-    { name: "TechCorp Industries", tier: "Platinum", link: "#", logo: "https://placehold.co/300x150/111827/ffffff?text=TechCorp" },
-    { name: "AeroDynamics Ltd", tier: "Gold", link: "#", logo: "https://placehold.co/300x150/111827/ffffff?text=AeroDynamics" },
-    { name: "Future Circuits", tier: "Gold", link: "#", logo: "https://placehold.co/300x150/111827/ffffff?text=Future+Circuits" },
-    { name: "Yildiz Technical University", tier: "University", link: "#", logo: "https://placehold.co/300x150/111827/ffffff?text=YTU" },
+    { name: "Sponsor 1", tier: "Platinum", link: "#", logo: "/sponsor.jpg" },
+    { name: "Sponsor 2", tier: "Gold", link: "#", logo: "/sponsor.jpg" },
+    { name: "Sponsor 3", tier: "Gold", link: "#", logo: "/sponsor.jpg" },
+    { name: "YTU", tier: "University", link: "#", logo: "/sponsor.jpg" },
   ]
 
   return (
