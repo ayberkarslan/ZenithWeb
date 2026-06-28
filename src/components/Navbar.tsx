@@ -104,19 +104,19 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
 
   return (
     <header className="navbar glass" role="banner">
-      <div className="container navbar-content">
-        <Link to="/" className="brand" aria-label="YTU Zenith Home">
+      <div className="w-full max-w-[1500px] mx-auto px-6 lg:px-10 flex justify-between items-center">
+        <Link to="/" className="brand flex-shrink-0" aria-label="YTU Zenith Home">
           <span className="brand-text">YTU ZENITH</span>
         </Link>
 
-        <nav className={`nav-links ${isMenuOpen ? 'open' : ''}`} role="navigation" aria-label="Main Navigation">
+        <nav className={`nav-links ${isMenuOpen ? 'open' : ''} flex-1 flex justify-end items-center gap-6 lg:gap-10`} role="navigation" aria-label="Main Navigation">
           <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
-          <Link to="/vehicle-design" onClick={() => setIsMenuOpen(false)}>Vehicle Design</Link>
-          <Link to="/dev-log" onClick={() => setIsMenuOpen(false)}>Dev Log</Link>
+          <Link to="/vehicle-design" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Vehicle Design</Link>
+          <Link to="/dev-log" onClick={() => setIsMenuOpen(false)} className="whitespace-nowrap">Dev Log</Link>
           <Link to="/team" onClick={() => setIsMenuOpen(false)}>Team</Link>
           <Link to="/sponsors" onClick={() => setIsMenuOpen(false)}>Sponsors</Link>
           
-          <div className="relative w-full max-w-[500px]" ref={searchRef}>
+          <div className="relative w-full max-w-[500px] ml-4 lg:ml-8 flex-shrink-0" ref={searchRef}>
             <form className="search-form m-0" onSubmit={handleSearch} role="search">
               <label htmlFor="site-search" className="sr-only">Search the site</label>
               <div className={`search-input-wrapper transition-all duration-300 ${isSearchFocused ? 'ring-2 ring-accent bg-black/40' : ''}`}>
@@ -139,9 +139,7 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
               <div 
                 className="absolute top-full left-0 right-0 w-full mt-4 z-50 transition-all duration-300 p-4"
                 style={{ 
-                  backgroundColor: 'rgba(10, 10, 10, 0.85)',
-                  backdropFilter: 'blur(30px)',
-                  WebkitBackdropFilter: 'blur(30px)',
+                  backgroundColor: '#050505', // Solid black as requested
                   border: '1px solid rgba(10, 132, 255, 0.3)',
                   boxShadow: '0 20px 60px rgba(0,0,0,0.8)',
                   borderRadius: '28px',
@@ -164,7 +162,7 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
                         <div key={result.item.id}>
                           <Link 
                             to={finalUrl}
-                            className="block px-6 py-5 rounded-2xl hover:bg-[rgba(255,255,255,0.04)] transition-all duration-200 group"
+                            className="block px-6 py-5 rounded-2xl hover:bg-[#111111] transition-all duration-200 group"
                             onClick={() => {
                               setIsSearchFocused(false)
                               setSearchQuery('')
@@ -174,12 +172,13 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
                               <h4 className="text-[#0A84FF] text-[16px] font-semibold tracking-tight">
                                 <HighlightText text={result.item.title} highlight={searchQuery} />
                               </h4>
-                              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-300" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+                              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-300" style={{ backgroundColor: '#1a1a1a' }}>
                                 {getCategoryIcon(result.item.category)}
                                 {result.item.category}
                               </span>
                             </div>
-                            <p className="text-[14px] text-gray-400 leading-relaxed tracking-wide">
+                            {/* Description is now white as requested */}
+                            <p className="text-[14px] text-white leading-relaxed tracking-wide">
                               <HighlightText text={result.item.description} highlight={searchQuery} />
                             </p>
                           </Link>
