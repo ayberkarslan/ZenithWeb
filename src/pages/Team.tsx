@@ -1,71 +1,72 @@
-import { Mail, Link2, User } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Mail, Link2, User, Crown } from 'lucide-react'
 import './Team.css'
 
 const teamData = {
   electronics: [
-    { name: "", role: "Takım Kaptanı", dept: "Elektronik ve Haberleşme Müh. / 2. Sınıf" },
-    { name: "", role: "Elektronik Ekip Üyesi", dept: "Elektronik ve Haberleşme Müh. / 2. Sınıf" }
+    { name: "Ahmet Yılmaz", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", isLeader: true },
+    { name: "Mehmet Demir", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", isLeader: false }
   ],
   software: [
-    { name: "", role: "Yazılım Ekip Üyesi", dept: "Harita Müh. / 2. Sınıf" },
-    { name: "", role: "Yazılım Ekip Üyesi", dept: "Mekatronik Müh. / 1. Sınıf" },
-    { name: "", role: "Yazılım Ekip Üyesi", dept: "Kontrol ve Otomasyon Müh. / Hazırlık" }
+    { name: "Ayşe Kaya", role: "Harita Müh. / 2. Sınıf", isLeader: false },
+    { name: "Fatma Çelik", role: "Mekatronik Müh. / 1. Sınıf", isLeader: false },
+    { name: "Ali Yıldız", role: "Kontrol ve Otomasyon Müh. / Hazırlık", isLeader: false }
   ],
   mechanics: [
-    { name: "", role: "Mekanik Tasarım Ekip Üyesi", dept: "Makine Müh. / 1. Sınıf" },
-    { name: "", role: "Mekanik Tasarım Ekip Üyesi", dept: "Makine Müh. / 1. Sınıf" }
+    { name: "Veli Şahin", role: "Makine Müh. / 1. Sınıf", isLeader: false },
+    { name: "Hasan Öz", role: "Makine Müh. / 1. Sınıf", isLeader: false }
   ],
   organization: [
-    { name: "", role: "Organizasyon Sorumlusu", dept: "Departman / Sınıf" }
+    { name: "Zeynep Arslan", role: "Departman / Sınıf", isLeader: false }
   ]
 }
 
 function TeamSection({ title, members }: { title: string, members: any[] }) {
   return (
-    <section className="team-section">
-      <h2 className="team-section-title">{title}</h2>
+    <div className="mb-10">
+      <h2 className="text-2xl font-bold mb-4 text-center">{title}</h2>
       <div className="team-grid">
-        {members.map((member, index) => (
-          <div key={index} className="team-card glass">
-            <div className="team-image-placeholder">
-              <User size={48} opacity={0.2} />
-            </div>
-            <div className="team-info">
-              <h3 className="team-name">{member.name}</h3>
-              <div className="team-role">{member.role}</div>
-              <div className="team-dept">{member.dept}</div>
-              
-              <div className="team-socials">
-                <a href="#" className="social-link" title="Email"><Mail size={16} /></a>
-                <a href="#" className="social-link" title="LinkedIn"><Link2 size={16} /></a>
+        {members.map((member, idx) => (
+          <div key={idx} className="team-card glass p-4 relative flex flex-col items-center">
+            {member.isLeader && (
+              <div className="leader-badge absolute top-3 right-3 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-[0_0_10px_rgba(10,132,255,0.5)]">
+                <Crown size={12} /> LİDER
               </div>
+            )}
+            <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mb-3 overflow-hidden shadow-inner border border-border">
+               <User size={28} className="text-muted opacity-40" />
+            </div>
+            <h3 className="text-base font-bold mb-1">{member.name}</h3>
+            <p className="text-muted text-[11px] text-center mb-3 min-h-[30px]">{member.role}</p>
+            <div className="flex gap-3 mt-auto w-full justify-center pt-3 border-t border-border">
+              <a href="#" className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-muted hover:text-white hover:bg-accent transition-colors"><Mail size={14} /></a>
+              <a href="#" className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-muted hover:text-white hover:bg-accent transition-colors"><Link2 size={14} /></a>
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </div>
   )
 }
 
 export default function Team() {
   return (
-    <div className="team-page page-container">
-      <div className="container">
-        <header className="page-header">
-          <h1 className="page-title">OUR TEAM</h1>
-          <p className="page-subtitle text-muted">
-            YTU UASK - ZENITH Döner Kanat İHA Takımı
-          </p>
-        </header>
+    <div className="pt-24 pb-16 container min-h-screen">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-4xl font-bold mb-2 text-center">OUR TEAM</h1>
+        <p className="text-base text-muted max-w-2xl mb-10 mx-auto text-center">
+          YTU UASK - ZENITH Döner Kanat İHA Takımı
+        </p>
 
-        <div className="team-content">
-          <TeamSection title="Team Leaders" members={teamData.electronics.slice(0, 1)} />
-          <TeamSection title="Electronics Team" members={teamData.electronics.slice(1)} />
-          <TeamSection title="Software Team" members={teamData.software} />
-          <TeamSection title="Mechanics & Design Team" members={teamData.mechanics} />
-          <TeamSection title="Organization Team" members={teamData.organization} />
-        </div>
-      </div>
+        <TeamSection title="Electronics Team" members={teamData.electronics} />
+        <TeamSection title="Software Team" members={teamData.software} />
+        <TeamSection title="Mechanics & Design Team" members={teamData.mechanics} />
+        <TeamSection title="Organization Team" members={teamData.organization} />
+      </motion.div>
     </div>
   )
 }
