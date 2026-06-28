@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { AlertTriangle, CheckCircle, Maximize2, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './DevLog.css'
@@ -23,9 +24,26 @@ const devLogs: LogEntry[] = Object.values(modules)
 const ALL_TAGS = ["All", "Avionics", "Computer Vision", "Hardware"]
 
 export default function DevLog() {
+  const location = useLocation()
   const [activeTag, setActiveTag] = useState("All")
   const [selectedLog, setSelectedLog] = useState<LogEntry>(devLogs[0])
   const [zoomedImage, setZoomedImage] = useState<string | null>(null)
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const postId = params.get('post')
+    if (postId) {
+      const log = devLogs.find(l => l.id.toString() === postId)
+      if (log) {
+        setSelectedLog(log)
+        // Ensure tag filter isn't hiding it
+        if (activeTag !== "All" && log.tag !== activeTag) {
+          setActiveTag("All")
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
+  }, [location.search])
 
   const filteredLogs = activeTag === "All" ? devLogs : devLogs.filter(l => l.tag === activeTag)
 

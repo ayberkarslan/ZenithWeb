@@ -104,7 +104,7 @@ export default function VehicleDesign() {
           </div>
 
           {/* Section 1: Mechanical */}
-          <div className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
+          <div id="airframe" className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
             <div>
               <div className="text-accent text-sm font-bold tracking-widest uppercase mb-3">01 / Airframe</div>
               <h3 className="text-3xl font-bold mb-6">Carbon Fiber Rigidity</h3>
@@ -131,7 +131,7 @@ export default function VehicleDesign() {
           </div>
 
           {/* Section 2: Avionics */}
-          <div className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
+          <div id="avionics" className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
             <div className="h-[500px] rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl md:order-1 order-2">
               <img src="/zifir.jpg" alt="Avionics testing" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
@@ -151,7 +151,7 @@ export default function VehicleDesign() {
           </div>
 
           {/* Section 3: Software / Mission Planner */}
-          <div className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
+          <div id="software" className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
             <div>
               <div className="text-accent text-sm font-bold tracking-widest uppercase mb-3">03 / Software</div>
               <h3 className="text-3xl font-bold mb-6">Visual Node-Based Mission Planner</h3>
@@ -171,7 +171,7 @@ export default function VehicleDesign() {
           </div>
 
           {/* Section 4: AI & Vision */}
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div id="cv" className="grid md:grid-cols-2 gap-16 items-center">
             <div className="h-[500px] rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl md:order-1 order-2">
               <img src="/yolo.png" alt="YOLO Object Detection" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
