@@ -182,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* Achievements Section */}
-      <section className="section relative z-10">
+      <section className="section py-32 relative z-10">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -190,18 +190,43 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl text-center mb-12">Our <span className="text-accent">Achievements</span></h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="card text-center hover:border-accent/50 transition-colors group cursor-default">
-                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform">🏆</div>
-                <h3 className="text-2xl mb-2 font-bold">Achievement 1</h3>
-                <p className="text-muted">Placeholder for Teknofest or past SUAS success story. We will fill this in soon.</p>
+            <h2 className="text-4xl text-center mb-16">Our <span className="text-accent">Achievements</span></h2>
+            <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+              
+              <div className="card hover:border-accent/50 transition-all group overflow-hidden flex flex-col cursor-default" style={{ padding: 0 }}>
+                <div className="w-full h-72 overflow-hidden bg-black/20">
+                  <img 
+                    src="/teknofest.jpg" 
+                    alt="Teknofest 2025 Finalist" 
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" 
+                  />
+                </div>
+                <div className="p-8">
+                  <div className="text-accent font-bold tracking-widest uppercase text-sm mb-3">Teknofest 2025</div>
+                  <h3 className="text-2xl mb-4 font-bold">International Free Mission UAV Finalist</h3>
+                  <p className="text-muted leading-relaxed">
+                    Selected as a finalist among hundreds of teams globally. We successfully demonstrated our cutting-edge rotary wing platform and autonomous AI capabilities on the grand stage, proving our engineering excellence.
+                  </p>
+                </div>
               </div>
-              <div className="card text-center hover:border-accent/50 transition-colors group cursor-default">
-                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform">🚀</div>
-                <h3 className="text-2xl mb-2 font-bold">Achievement 2</h3>
-                <p className="text-muted">Placeholder for another major competition result or technical milestone.</p>
+
+              <div className="card hover:border-accent/50 transition-all group overflow-hidden flex flex-col cursor-default" style={{ padding: 0 }}>
+                <div className="w-full h-72 overflow-hidden bg-black/20">
+                  <img 
+                    src="/teknofest.jpg" 
+                    alt="Future Achievement" 
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" 
+                  />
+                </div>
+                <div className="p-8">
+                  <div className="text-accent font-bold tracking-widest uppercase text-sm mb-3">SUAS 2026</div>
+                  <h3 className="text-2xl mb-4 font-bold">Preparing for the Global Stage</h3>
+                  <p className="text-muted leading-relaxed">
+                    Building upon our success, we are heavily modifying our next-generation autonomous systems for the SUAS 2026 competition, focusing on precision payload delivery and real-time object detection.
+                  </p>
+                </div>
               </div>
+
             </div>
           </motion.div>
         </div>
