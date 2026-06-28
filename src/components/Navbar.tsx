@@ -82,6 +82,25 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
     }
   }
 
+// Helper to highlight matching text
+const HighlightText = ({ text, highlight }: { text: string, highlight: string }) => {
+  if (!highlight.trim()) return <>{text}</>;
+  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.toLowerCase() === highlight.toLowerCase() ? (
+          <span key={i} style={{ backgroundColor: 'rgba(10, 132, 255, 0.2)', color: '#5AC8FA', fontWeight: 700, padding: '0 2px', borderRadius: '4px' }}>
+            {part}
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+};
+
   return (
     <header className="navbar glass" role="banner">
       <div className="container navbar-content">
@@ -96,7 +115,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
           <Link to="/team" onClick={() => setIsMenuOpen(false)}>Team</Link>
           <Link to="/sponsors" onClick={() => setIsMenuOpen(false)}>Sponsors</Link>
           
-          <div className="relative" ref={searchRef}>
+          <div className="relative w-full max-w-[450px]" ref={searchRef}>
             <form className="search-form m-0" onSubmit={handleSearch} role="search">
               <label htmlFor="site-search" className="sr-only">Search the site</label>
               <div className={`search-input-wrapper transition-all duration-300 ${isSearchFocused ? 'ring-2 ring-accent bg-black/40' : ''}`}>
@@ -117,19 +136,20 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
               <div 
-                className="absolute top-full right-0 mt-3 w-[450px] rounded-[2rem] overflow-hidden z-50 transition-all duration-300"
+                className="absolute top-full left-0 right-0 w-full mt-4 overflow-hidden z-50 transition-all duration-300"
                 style={{ 
-                  backgroundColor: 'rgba(0,0,0,0.95)', // Pure black with slight transparency
-                  backdropFilter: 'blur(20px)', // Apple-style blur
+                  backgroundColor: 'rgba(0,0,0,0.95)',
+                  backdropFilter: 'blur(20px)',
                   WebkitBackdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(10, 132, 255, 0.3)', // Subtle, non-glowing blue border
-                  boxShadow: '0 15px 50px rgba(0,0,0,0.8)', // Deep shadow for depth, no neon
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+                  border: '1px solid rgba(10, 132, 255, 0.4)',
+                  boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
+                  borderRadius: '28px',
+                  fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
                 }}
               >
                 {results.length > 0 ? (
                   <div className="flex flex-col">
-                    <div className="px-6 py-3 border-b border-[rgba(255,255,255,0.05)] flex justify-between items-center text-[10px] text-gray-500 uppercase tracking-widest font-semibold" style={{ backgroundColor: 'rgba(0,0,0,0.3)' }}>
+                    <div className="px-6 py-4 border-b border-[rgba(255,255,255,0.08)] flex justify-between items-center text-[11px] text-gray-500 uppercase tracking-widest font-bold" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                       <span>Top Results</span>
                       <span>{results.length} found</span>
                     </div>
@@ -143,32 +163,33 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                         <Link 
                           key={result.item.id} 
                           to={finalUrl}
-                          className={`block px-6 py-5 hover:bg-[rgba(255,255,255,0.05)] transition-colors ${idx !== results.length - 1 ? 'border-b border-[rgba(255,255,255,0.05)]' : ''} group`}
+                          className={`block px-7 py-6 hover:bg-[rgba(255,255,255,0.03)] transition-colors ${idx !== results.length - 1 ? 'border-b border-[rgba(255,255,255,0.04)]' : ''} group`}
                           onClick={() => {
                             setIsSearchFocused(false)
                             setSearchQuery('')
                           }}
                         >
-                          <div className="flex justify-between items-start mb-1.5">
-                            {/* Titles are now blue by default, change to lighter blue on hover */}
-                            <h4 className="text-[#0A84FF] text-[15px] font-semibold group-hover:text-[#5AC8FA] transition-colors tracking-tight">{result.item.title}</h4>
-                            <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium text-gray-400" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                          <div className="flex justify-between items-start mb-3">
+                            <h4 className="text-[#0A84FF] text-[17px] font-semibold tracking-tight">
+                              <HighlightText text={result.item.title} highlight={searchQuery} />
+                            </h4>
+                            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-300" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
                               {getCategoryIcon(result.item.category)}
                               {result.item.category}
                             </span>
                           </div>
-                          <p className="text-[13px] text-gray-400 leading-relaxed tracking-tight line-clamp-2">
-                            {result.item.description}
+                          <p className="text-[14px] text-gray-400 leading-relaxed tracking-wide">
+                            <HighlightText text={result.item.description} highlight={searchQuery} />
                           </p>
                         </Link>
                       )
                     })}
                   </div>
                 ) : (
-                  <div className="py-12 px-6 text-center text-gray-500" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                    <Search className="mx-auto mb-4 opacity-20 text-[#0A84FF]" size={40} />
-                    <p className="text-[15px] text-gray-300 font-medium">No results for "{searchQuery}"</p>
-                    <p className="text-[13px] mt-2 text-gray-500">Try searching for "YOLO" or "Pixhawk"</p>
+                  <div className="py-16 px-8 text-center text-gray-500" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                    <Search className="mx-auto mb-5 opacity-30 text-[#0A84FF]" size={48} />
+                    <p className="text-[17px] text-gray-300 font-semibold tracking-tight">No results for "{searchQuery}"</p>
+                    <p className="text-[14px] mt-3 text-gray-500 tracking-wide">Make sure all words are spelled correctly.</p>
                   </div>
                 )}
               </div>
