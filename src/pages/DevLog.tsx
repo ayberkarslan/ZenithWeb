@@ -97,6 +97,14 @@ export default function DevLog() {
                 className={`timeline-item cursor-pointer group ${selectedLog.id === log.id ? 'active' : ''}`}
                 onClick={() => setSelectedLog(log)}
               >
+                {selectedLog.id === log.id && (
+                  <motion.div
+                    layoutId="activeTimelineLine"
+                    className="absolute bg-accent"
+                    style={{ left: '-1.5rem', top: 0, bottom: '-1.5rem', width: '2px', zIndex: 5, boxShadow: '0 0 10px var(--accent-color)' }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
                 <div className={`timeline-dot ${selectedLog.id === log.id ? 'bg-accent' : 'bg-muted'}`}></div>
                 <div className="card transition-all group-hover:border-accent/50">
                   <div className="flex justify-between items-start mb-2">

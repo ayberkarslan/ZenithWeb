@@ -11,7 +11,7 @@
   bottom: 0;
   left: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--accent-color) 0%, var(--border-color) 20%, transparent 100%);
+  background: var(--border-color);
   border-radius: 1px;
 }
 
