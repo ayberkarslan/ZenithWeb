@@ -23,8 +23,7 @@ const teamData = {
 
 function TeamSection({ title, members }: { title: string, members: any[] }) {
   return (
-    <div className="mb-48 mt-16 relative overflow-visible">
-
+    <div style={{ marginTop: '100px', marginBottom: '180px' }} className="relative">
       <div className="relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center tracking-wider">{title}</h2>
         <div className="team-grid">
@@ -62,15 +61,17 @@ function TeamSection({ title, members }: { title: string, members: any[] }) {
 export default function Team() {
   return (
     <div 
-      className="pt-40 pb-64 min-h-screen relative"
+      className="min-h-screen relative"
       style={{ 
+        paddingTop: '200px',
+        paddingBottom: '250px',
         backgroundImage: 'linear-gradient(rgba(10, 20, 40, 0.3), rgba(5, 10, 20, 0.5)), url(/blueprint.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
       }}
     >
-      <div className="container mx-auto relative z-10 overflow-hidden">
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
