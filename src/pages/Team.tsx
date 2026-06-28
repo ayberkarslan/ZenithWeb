@@ -61,7 +61,7 @@ function TeamSection({ title, members }: { title: string, members: any[] }) {
 export default function Team() {
   return (
     <div 
-      className="pt-24 pb-16 min-h-screen relative"
+      className="pt-24 pb-32 min-h-screen relative"
       style={{ 
         backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(/blueprint.jpg)',
         backgroundSize: 'cover',
