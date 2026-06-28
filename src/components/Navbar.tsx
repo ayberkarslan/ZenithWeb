@@ -106,38 +106,49 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
-              <div className="absolute top-full right-0 mt-4 w-[500px] bg-[#050505] border border-gray-700 rounded-2xl shadow-2xl overflow-hidden z-50">
+              <div 
+                className="absolute top-full right-0 mt-4 w-[500px] border border-gray-700 rounded-2xl shadow-2xl overflow-hidden z-50"
+                style={{ backgroundColor: '#050505' }}
+              >
                 {results.length > 0 ? (
                   <div className="flex flex-col">
-                    <div className="px-5 py-3 bg-gray-900 border-b border-gray-800 flex justify-between items-center text-xs text-gray-400 uppercase tracking-widest font-bold">
+                    <div className="px-5 py-3 border-b border-gray-800 flex justify-between items-center text-xs text-gray-400 uppercase tracking-widest font-bold" style={{ backgroundColor: '#0a0a0a' }}>
                       <span>Top Results</span>
                       <span>{results.length} found</span>
                     </div>
-                    {results.map((result, idx) => (
-                      <Link 
-                        key={result.item.id} 
-                        to={result.item.url}
-                        className={`block p-5 hover:bg-gray-800 transition-colors ${idx !== results.length - 1 ? 'border-b border-gray-800/50' : ''} group`}
-                        onClick={() => {
-                          setIsSearchFocused(false)
-                          setSearchQuery('')
-                        }}
-                      >
-                        <div className="flex justify-between items-start mb-2">
-                          <h4 className="text-white text-lg font-bold group-hover:text-accent transition-colors">{result.item.title}</h4>
-                          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black border border-gray-700 text-xs font-bold text-gray-300">
-                            {getCategoryIcon(result.item.category)}
-                            {result.item.category}
-                          </span>
-                        </div>
-                        <p className="text-sm text-gray-400 line-clamp-2 leading-relaxed">
-                          {result.item.description}
-                        </p>
-                      </Link>
-                    ))}
+                    {results.map((result, idx) => {
+                      // Inject ?search=query into the url before the hash
+                      const urlParts = result.item.url.split('#');
+                      const basePath = urlParts[0];
+                      const hash = urlParts[1] ? `#${urlParts[1]}` : '';
+                      const finalUrl = `${basePath}${basePath.includes('?') ? '&' : '?'}search=${encodeURIComponent(searchQuery)}${hash}`;
+                      
+                      return (
+                        <Link 
+                          key={result.item.id} 
+                          to={finalUrl}
+                          className={`block p-5 hover:bg-gray-800 transition-colors ${idx !== results.length - 1 ? 'border-b border-gray-800/50' : ''} group`}
+                          onClick={() => {
+                            setIsSearchFocused(false)
+                            setSearchQuery('')
+                          }}
+                        >
+                          <div className="flex justify-between items-start mb-2">
+                            <h4 className="text-white text-lg font-bold group-hover:text-accent transition-colors">{result.item.title}</h4>
+                            <span className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-gray-700 text-xs font-bold text-gray-300" style={{ backgroundColor: '#000000' }}>
+                              {getCategoryIcon(result.item.category)}
+                              {result.item.category}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-400 line-clamp-2 leading-relaxed">
+                            {result.item.description}
+                          </p>
+                        </Link>
+                      )
+                    })}
                   </div>
                 ) : (
-                  <div className="p-10 text-center text-gray-500 bg-[#050505]">
+                  <div className="p-10 text-center text-gray-500" style={{ backgroundColor: '#050505' }}>
                     <Search className="mx-auto mb-4 opacity-20" size={40} />
                     <p className="text-lg">No results found for "{searchQuery}"</p>
                     <p className="text-sm mt-2">Try searching for "YOLO", "Pixhawk", or "Flight"</p>
