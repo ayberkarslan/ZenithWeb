@@ -30,7 +30,7 @@ function TeamSection({ title, members }: { title: string, members: any[] }) {
           {members.map((member, idx) => (
             <div key={idx} className="team-card glass p-8 relative flex flex-col items-center">
               {member.isLeader && (
-                <div className="leader-badge absolute top-4 right-4 bg-accent text-white text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-[0_0_15px_rgba(10,132,255,0.6)] z-20">
+                <div className="leader-badge absolute top-4 right-4 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg z-20">
                   <Crown size={14} /> TEAM LEADER
                 </div>
               )}
