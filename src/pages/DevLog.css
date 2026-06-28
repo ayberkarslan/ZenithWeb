@@ -23,7 +23,8 @@
 .timeline-dot {
   position: absolute;
   left: -1.8rem;
-  top: 1.5rem;
+  top: 50%;
+  margin-top: -6px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
