@@ -125,14 +125,14 @@ export default function VehicleDesign() {
                 </ul>
               </div>
             </div>
-            <div className="h-[500px] rounded-3xl overflow-hidden border border-gray-800/60 shadow-2xl">
+            <div className="h-[500px] rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl">
               <img src="/zifir.jpg" alt="Zifir Drone Frame" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
           </div>
 
           {/* Section 2: Avionics */}
           <div className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
-            <div className="h-[500px] rounded-3xl overflow-hidden border border-gray-800/60 shadow-2xl md:order-1 order-2">
+            <div className="h-[500px] rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl md:order-1 order-2">
               <img src="/zifir.jpg" alt="Avionics testing" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
             <div className="md:order-2 order-1">
@@ -165,15 +165,15 @@ export default function VehicleDesign() {
                 </p>
               </div>
             </div>
-            <div className="h-[500px] rounded-3xl overflow-hidden border border-gray-800/60 shadow-2xl">
-              <img src="/node.jpg" alt="Node Based Mission Planner" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+            <div className="h-[500px] rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl">
+              <img src="/node.png" alt="Node Based Mission Planner" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
           </div>
 
           {/* Section 4: AI & Vision */}
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="h-[500px] rounded-3xl overflow-hidden border border-gray-800/60 shadow-2xl md:order-1 order-2">
-              <img src="/yolo.jpg" alt="YOLO Object Detection" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+            <div className="h-[500px] rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl md:order-1 order-2">
+              <img src="/yolo.png" alt="YOLO Object Detection" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
             <div className="md:order-2 order-1">
               <div className="text-accent text-sm font-bold tracking-widest uppercase mb-3">04 / Computer Vision</div>
