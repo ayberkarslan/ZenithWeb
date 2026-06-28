@@ -93,9 +93,9 @@ export default function VehicleDesign() {
       </section>
 
       {/* Engineering Process - Web Format */}
-      <section className="py-32 relative z-10 bg-[#030712]">
+      <section className="bg-[#030712] relative z-10" style={{ paddingTop: '8rem', paddingBottom: '8rem', marginTop: '4rem' }}>
         <div className="container max-w-6xl">
-          <div className="mb-24 text-center">
+          <div className="text-center" style={{ marginBottom: '8rem' }}>
             <h2 className="text-4xl font-bold mb-6">Engineering the Machine</h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
               Real engineering isn't just about the final product. It's about the decisions, the failures, and the iterative testing. Here is how ZIFIR was built for the SUAS 2026 mission.
@@ -103,7 +103,7 @@ export default function VehicleDesign() {
           </div>
 
           {/* Section 1: Mechanical */}
-          <div className="grid md:grid-cols-2 gap-16 items-center mb-32">
+          <div className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
             <div>
               <div className="text-accent text-sm font-bold tracking-widest uppercase mb-3">01 / Airframe</div>
               <h3 className="text-3xl font-bold mb-6">Carbon Fiber Rigidity</h3>
@@ -130,7 +130,7 @@ export default function VehicleDesign() {
           </div>
 
           {/* Section 2: Avionics */}
-          <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="h-[500px] rounded-3xl overflow-hidden border border-gray-800/60 shadow-2xl md:order-1 order-2">
               <img src="/zifir.jpg" alt="Avionics testing" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
@@ -153,7 +153,7 @@ export default function VehicleDesign() {
       </section>
 
       {/* Call to Action -> Dev Log */}
-      <section className="py-32 bg-[#030712] relative z-10 mb-16">
+      <section className="bg-[#030712] relative z-10" style={{ marginTop: '12rem', marginBottom: '12rem', paddingBottom: '4rem' }}>
         <div className="container max-w-4xl text-center border border-gray-800/60 bg-gray-900/30 rounded-3xl p-16 shadow-2xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Dive Deeper</h2>
           <p className="text-xl text-gray-400 mb-10 leading-relaxed">
