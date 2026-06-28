@@ -45,8 +45,9 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
       { name: 'description', weight: 2.0 },
       { name: 'category', weight: 1.0 }
     ],
-    threshold: 0.3, // Smarter typo tolerance without returning garbage
-    ignoreLocation: true, // CRITICAL: Find words anywhere in the text, not just at the start
+    threshold: 0.2, // Strict typo tolerance to avoid garbage subsequence matches
+    ignoreLocation: false, 
+    distance: 10000, // Look anywhere in the string without penalizing location, but enforce contiguous-like matching
     useExtendedSearch: true,
     includeScore: true,
   }), [searchIndex])

@@ -75,6 +75,7 @@ function ScrollAndHighlight() {
 
 function App() {
   const [theme, setTheme] = useState('dark')
+  const location = useLocation()
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -88,7 +89,7 @@ function App() {
     <div className="app-container">
       <ScrollAndHighlight />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <main>
+      <main key={location.pathname}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/vehicle-design" element={<VehicleDesign />} />
