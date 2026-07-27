@@ -4,20 +4,17 @@ import './Team.css'
 
 const teamData = {
   electronics: [
-    { name: "Huzeyfe Fazıl Koç", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: true },
-    { name: "Yusuf Yasir İncal", role: "Elektronik ve Haberleşme Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
+    { name: "Huzeyfe Fazıl Koç", role: "Electronics & Communications Eng. / 2nd Year", image: "/team/fazil.jpg", isLeader: true },
+    { name: "Yusuf Yasir İncal", role: "Electronics & Communications Eng. / 2nd Year", image: "/team/yusuf.jpg", isLeader: false }
   ],
   software: [
-    { name: "Muharrem Sait Çoktaş", role: "Harita Müh. / 2. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
-    { name: "Muhammet Ayberk Arslan", role: "Kontrol ve Otomasyon Müh. / Hazırlık", image: "/team/placeholder.jpg", isLeader: false },
-    { name: "Yusuf Kamil Turan", role: "Mekatronik Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
+    { name: "Muharrem Sait Çoktaş", role: "Geomatics Eng. / 2nd Year", image: "/team/sait.jpg", isLeader: false },
+    { name: "Muhammet Ayberk Arslan", role: "Control & Automation Eng. / Prep Year", image: "/team/ayberk.jpeg", isLeader: false },
+    { name: "Yusuf Kamil Turan", role: "Mechatronics Eng. / 1st Year", image: "/team/kamil.jpg", isLeader: false }
   ],
   mechanics: [
-    { name: "Selim Keleşoğlu", role: "Makine Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false },
-    { name: "Ayaz Şenol", role: "Makine Müh. / 1. Sınıf", image: "/team/placeholder.jpg", isLeader: false }
-  ],
-  organization: [
-    { name: "Ad Soyad", role: "Departman / Sınıf", image: "/team/placeholder.jpg", isLeader: false }
+    { name: "Selim Keleşoğlu", role: "Mechanical Eng. / 1st Year", image: "/team/selim.jpg", isLeader: false },
+    { name: "Ayaz Şenol", role: "Mechanical Eng. / 1st Year", image: "/team/ayaz.png", isLeader: false }
   ]
 }
 
@@ -30,17 +27,17 @@ function TeamSection({ title, members }: { title: string, members: any[] }) {
           {members.map((member, idx) => (
             <div key={idx} className="team-card glass p-8 relative flex flex-col items-center">
               {member.isLeader && (
-                <div className="leader-badge absolute top-4 right-4 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg z-20">
-                  <Crown size={14} /> TEAM LEADER
+                <div className="leader-badge">
+                  <Crown size={14} /> TEAM LEAD
                 </div>
               )}
               {/* Photo Area */}
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-secondary/50 flex items-center justify-center mb-6 overflow-hidden shadow-[0_0_20px_rgba(10,132,255,0.15)] border-2 border-accent/20 relative group">
+              <div className="team-photo-container group">
                  <User size={48} className="text-muted opacity-30 absolute" />
                  <img 
                    src={member.image} 
                    alt={member.name} 
-                   className="w-full h-full object-cover z-10 relative bg-secondary"
+                   className="team-photo"
                    onError={(e) => { e.currentTarget.style.display='none' }} 
                  />
               </div>
@@ -60,15 +57,13 @@ function TeamSection({ title, members }: { title: string, members: any[] }) {
 
 export default function Team() {
   return (
-    <div 
-      className="pt-32 pb-32 min-h-screen relative"
-      style={{ 
-        backgroundImage: 'linear-gradient(rgba(10, 20, 40, 0.3), rgba(5, 10, 20, 0.5)), url(/blueprint.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
+      <div 
+        className="pt-32 min-h-screen relative"
+        style={{ 
+          backgroundColor: '#000000',
+          paddingBottom: '12rem'
+        }}
+      >
       <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,12 +72,11 @@ export default function Team() {
         >
           <h1 className="text-5xl font-bold mb-4 text-center">OUR TEAM</h1>
           <p className="text-xl text-muted max-w-2xl mb-32 mx-auto text-center">
-            YTU UASK - ZENITH Döner Kanat İHA Takımı
+            YILDIZ TECHNICAL UNIVERSITY UASK - ZENITH Rotary Wing UAV Team
           </p>
           <TeamSection title="Electronics" members={teamData.electronics} />
           <TeamSection title="Software" members={teamData.software} />
           <TeamSection title="Mechanics" members={teamData.mechanics} />
-          <TeamSection title="Organization" members={teamData.organization} />
         </motion.div>
       </div>
     </div>

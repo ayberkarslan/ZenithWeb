@@ -213,8 +213,8 @@ export default function Home() {
               <div className="card hover:border-accent/50 transition-all group overflow-hidden flex flex-col cursor-default" style={{ padding: 0 }}>
                 <div className="w-full h-72 overflow-hidden bg-black/20">
                   <img 
-                    src="/teknofest.jpg" 
-                    alt="Future Achievement" 
+                    src="/havada.jpg" 
+                    alt="SUAS 2026" 
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" 
                   />
                 </div>
@@ -251,10 +251,10 @@ export default function Home() {
             
             <div className="who-we-are-visual">
               <img 
-                src="/team-photo.jpg" 
+                src="/team/IMG_2482.jpg" 
                 alt="YTU Zenith Team" 
-                className="w-full object-cover border shadow-2xl" 
-                style={{ aspectRatio: '4/5', borderRadius: '2rem', borderColor: 'var(--glass-border)' }}
+                className="w-full h-auto object-cover border shadow-2xl" 
+                style={{ borderRadius: '2rem', borderColor: 'var(--glass-border)' }}
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                   e.currentTarget.nextElementSibling?.classList.remove('hidden');

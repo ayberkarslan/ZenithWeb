@@ -1,9 +1,18 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, ChevronLeft, X } from 'lucide-react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Float, Environment, ContactShadows, useGLTF } from '@react-three/drei'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+
+const galleryImages = [
+  "/gallery/IMG_2511.jpg",
+  "/gallery/IMG_2511_3.jpg",
+  "/gallery/IMG_2522.jpg",
+  "/gallery/IMG_2522_2.jpg",
+  "/gallery/IMG_2562.jpg"
+];
 import * as THREE from 'three'
 import './VehicleDesign.css'
 
@@ -27,19 +36,77 @@ function RealDrone() {
 useGLTF.preload('/zifirDrone.glb')
 
 export default function VehicleDesign() {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   return (
     <div className="vehicle-design-page bg-[#030712] text-white min-h-screen font-sans">
+      {/* Lightbox Modal */}
+      {selectedIndex !== null && createPortal(
+        <div 
+          className="lightbox-overlay"
+          onClick={() => setSelectedIndex(null)}
+        >
+          <button 
+            className="lightbox-close"
+            onClick={(e) => { e.stopPropagation(); setSelectedIndex(null); }}
+          >
+            <X size={32} />
+          </button>
+          
+          <button 
+            className="lightbox-prev"
+            onClick={(e) => { 
+              e.stopPropagation(); 
+              setSelectedIndex(prev => prev === 0 ? galleryImages.length - 1 : prev! - 1); 
+            }}
+          >
+            <ChevronLeft size={48} />
+          </button>
+
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={galleryImages[selectedIndex]} 
+              alt="Fullscreen preview" 
+              className="lightbox-image"
+            />
+          </div>
+
+          <button 
+            className="lightbox-next"
+            onClick={(e) => { 
+              e.stopPropagation(); 
+              setSelectedIndex(prev => prev === galleryImages.length - 1 ? 0 : prev! + 1); 
+            }}
+          >
+            <ChevronRight size={48} />
+          </button>
+        </div>,
+        document.body
+      )}
       
       {/* SpaceX Style Hero */}
       <section className="relative h-screen flex flex-col items-center justify-start pt-32 md:pt-40 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Canvas camera={{ position: [0, 2, 8], fov: 45 }}>
+          <Canvas 
+            camera={{ position: [0, 2, 8], fov: 45 }} 
+            dpr={[1, 1.5]} /* Limits resolution on high-DPI screens to prevent GPU bottleneck */
+            gl={{ antialias: true, powerPreference: "high-performance" }}
+          >
             <ambientLight intensity={0.7} />
             <spotLight position={[5, 10, 5]} angle={0.3} penumbra={1} intensity={2.5} castShadow />
             <Float speed={2} rotationIntensity={0.2} floatIntensity={1.5}>
               <RealDrone />
             </Float>
-            <ContactShadows position={[0, -3, 0]} opacity={0.6} scale={30} blur={3} far={4} color="#0A84FF" />
+            <ContactShadows 
+              position={[0, -3, 0]} 
+              opacity={0.6} 
+              scale={30} 
+              blur={2.5} 
+              far={4} 
+              color="#0A84FF" 
+              resolution={256} 
+              frames={1} /* Bake the shadow once instead of rendering 60 times a second */
+            />
             <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 1.5} autoRotate autoRotateSpeed={0.5} />
             <Environment preset="city" />
           </Canvas>
@@ -50,21 +117,17 @@ export default function VehicleDesign() {
 
         <div className="relative z-10 container flex flex-col items-center text-center pointer-events-none">
           <motion.h1 
-            className="text-6xl md:text-8xl font-bold tracking-tighter mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            className="text-7xl md:text-9xl font-black mb-4"
+            style={{ 
+              letterSpacing: '0.15em', 
+              textShadow: '0 0 80px rgba(10, 132, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.2)' 
+            }}
+            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            ZIFIR <span className="text-accent">X1</span>
+            HEYULA
           </motion.h1>
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-400 tracking-widest uppercase mb-12 font-medium"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            Next-Generation Autonomous Aerial System
-          </motion.p>
           
           <motion.div 
             className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 border-t border-gray-800/60 w-full max-w-4xl backdrop-blur-sm bg-black/10 rounded-3xl p-8"
@@ -74,20 +137,20 @@ export default function VehicleDesign() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <div className="stat-block text-center">
-              <div className="text-4xl font-bold text-white mb-1">4.2<span className="text-lg text-gray-500 ml-1">kg</span></div>
+              <div className="text-4xl font-bold text-white mb-1">8.75<span className="text-lg text-gray-500 ml-1">kg</span></div>
               <div className="text-xs text-gray-500 uppercase tracking-widest">MTOW</div>
             </div>
             <div className="stat-block text-center">
-              <div className="text-4xl font-bold text-white mb-1">28<span className="text-lg text-gray-500 ml-1">min</span></div>
+              <div className="text-4xl font-bold text-white mb-1">32<span className="text-lg text-gray-500 ml-1">min</span></div>
               <div className="text-xs text-gray-500 uppercase tracking-widest">Flight Time</div>
             </div>
             <div className="stat-block text-center">
-              <div className="text-4xl font-bold text-white mb-1">1.5<span className="text-lg text-gray-500 ml-1">kg</span></div>
+              <div className="text-4xl font-bold text-white mb-1">8<span className="text-lg text-gray-500 ml-1">kg</span></div>
               <div className="text-xs text-gray-500 uppercase tracking-widest">Payload Cap</div>
             </div>
             <div className="stat-block text-center">
-              <div className="text-4xl font-bold text-white mb-1">12<span className="text-lg text-gray-500 ml-1">ms</span></div>
-              <div className="text-xs text-gray-500 uppercase tracking-widest">AI Latency</div>
+              <div className="text-4xl font-bold text-white mb-1">20<span className="text-lg text-gray-500 ml-1">km</span></div>
+              <div className="text-xs text-gray-500 uppercase tracking-widest">Telemetry Range</div>
             </div>
           </motion.div>
         </div>
@@ -96,12 +159,26 @@ export default function VehicleDesign() {
       {/* Engineering Process - Web Format */}
       <section className="bg-[#030712] relative z-10" style={{ paddingTop: '8rem', paddingBottom: '8rem', marginTop: '4rem' }}>
         <div className="container max-w-6xl">
-          <div className="text-center" style={{ marginBottom: '8rem' }}>
+          {/* Hero Render Placeholder */}
+          <div className="w-full bg-gray-900/40 rounded-3xl border border-accent/20 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl mb-12" style={{ aspectRatio: '21/9' }}>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-gray-600 font-bold text-2xl tracking-widest uppercase">3D Render Placeholder</span>
+            </div>
+            {/* 
+              TODO: Add sexy 3D render and huge slogan here 
+              <img src="..." className="w-full h-full object-cover" />
+              <h1 className="...">SLOGAN</h1>
+            */}
+          </div>
+
+          <div className="text-center" style={{ marginBottom: '4rem' }}>
             <h2 className="text-4xl font-bold mb-6">Engineering the Machine</h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              Real engineering isn't just about the final product. It's about the decisions, the failures, and the iterative testing. Here is how ZIFIR was built for the SUAS 2026 mission.
+              Real engineering isn't just about the final product. It's about the decisions, the failures, and the iterative testing. Here is how HEYULA was built for the SUAS 2026 mission.
             </p>
           </div>
+
+
 
           {/* Section 1: Mechanical */}
           <div id="airframe" className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
@@ -125,21 +202,21 @@ export default function VehicleDesign() {
                 </ul>
               </div>
             </div>
-            <div className="h-[500px] rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl">
-              <img src="/zifir.jpg" alt="Zifir Drone Frame" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+            <div className="rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl flex items-center justify-center">
+              <img src="/carbon-fiber.jpg" alt="Carbon Fiber Rigidity" className="w-full h-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
           </div>
 
           {/* Section 2: Avionics */}
           <div id="avionics" className="grid md:grid-cols-2 gap-16 items-center" style={{ marginBottom: '10rem' }}>
-            <div className="h-[500px] rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl md:order-1 order-2">
-              <img src="/zifir.jpg" alt="Avionics testing" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+            <div className="rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl md:order-1 order-2 flex items-center justify-center">
+              <img src="/avionics.png" alt="Pixhawk and Jetson" className="w-full h-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
             <div className="md:order-2 order-1">
               <div className="text-accent text-sm font-bold tracking-widest uppercase mb-3">02 / Avionics</div>
-              <h3 className="text-3xl font-bold mb-6">Pixhawk & Jetson Synergy</h3>
+              <h3 className="text-3xl font-bold mb-6">Pixhawk + Jetson Bridge</h3>
               <p className="text-gray-400 mb-8 leading-relaxed text-lg">
-                The brain of ZIFIR X1 is a tightly coupled architecture between the <strong>Pixhawk Cube Orange</strong> and the <strong>NVIDIA Jetson Orin Nano</strong>. The Pixhawk handles hard-real-time flight dynamics and triple-redundant state estimation, while the Jetson provides massive GPU compute for high-level AI tasks. Operating over a high-baud serial bridge, this duo offers flawless plug-and-play compatibility and zero-bottleneck data throughput.
+                The brain of HEYULA is a tightly coupled architecture between the <strong>Pixhawk Cube Orange</strong> and the <strong>NVIDIA Jetson Orin Nano</strong>. The Pixhawk handles hard-real-time flight dynamics and triple-redundant state estimation, while the Jetson provides massive GPU compute for high-level AI tasks. Operating over a high-baud serial bridge, this duo offers flawless plug-and-play compatibility and zero-bottleneck data throughput.
               </p>
               <div className="bg-gray-900/50 border border-gray-800 p-6 rounded-2xl border-l-4 border-l-accent">
                 <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Test #14: High-Bandwidth Telemetry</h4>
@@ -165,8 +242,8 @@ export default function VehicleDesign() {
                 </p>
               </div>
             </div>
-            <div className="h-[500px] rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl">
-              <img src="/node.png" alt="Node Based Mission Planner" className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+            <div className="rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl flex items-center justify-center">
+              <img src="/visual-node.png" alt="Node Based Mission Planner" className="w-full h-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
             </div>
           </div>
 
@@ -200,8 +277,31 @@ export default function VehicleDesign() {
         </div>
       </section>
 
+      {/* Image Gallery */}
+      <section className="bg-[#030712] relative z-10" style={{ marginTop: '2rem', marginBottom: '4rem' }}>
+        <div className="container max-w-5xl">
+          <h2 className="text-xl font-bold mb-4 text-center text-gray-400 tracking-wide uppercase">Moments from the Lab</h2>
+          <div className="w-full overflow-hidden relative rounded-xl shadow-lg" style={{ backgroundColor: 'rgba(0,0,0,0.2)', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '1rem 0' }}>
+            <div className="marquee-container" style={{ display: 'flex', gap: '0.75rem', padding: '0 0.75rem' }}>
+              {[...galleryImages, ...galleryImages, ...galleryImages].map((src, idx) => {
+                const originalIndex = idx % galleryImages.length;
+                return (
+                  <div 
+                    key={idx} 
+                    className="gallery-item"
+                    onClick={() => setSelectedIndex(originalIndex)}
+                  >
+                    <img src={src} alt={`Gallery ${originalIndex}`} className="gallery-image" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Call to Action -> Dev Log */}
-      <section className="bg-[#030712] relative z-10" style={{ marginTop: '12rem', marginBottom: '12rem', paddingBottom: '4rem' }}>
+      <section className="bg-[#030712] relative z-10" style={{ marginTop: '6rem', marginBottom: '12rem', paddingBottom: '4rem' }}>
         <div className="container max-w-4xl text-center border border-gray-800/60 bg-gray-900/30 rounded-3xl p-16 shadow-2xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Dive Deeper</h2>
           <p className="text-xl text-gray-400 leading-relaxed" style={{ marginBottom: '3rem' }}>
