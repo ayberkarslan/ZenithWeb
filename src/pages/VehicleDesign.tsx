@@ -159,16 +159,9 @@ export default function VehicleDesign() {
       {/* Engineering Process - Web Format */}
       <section className="bg-[#030712] relative z-10" style={{ paddingTop: '8rem', paddingBottom: '8rem', marginTop: '4rem' }}>
         <div className="container max-w-6xl">
-          {/* Hero Render Placeholder */}
-          <div className="w-full bg-gray-900/40 rounded-3xl border border-accent/20 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl mb-12" style={{ aspectRatio: '21/9' }}>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-gray-600 font-bold text-2xl tracking-widest uppercase">3D Render Placeholder</span>
-            </div>
-            {/* 
-              TODO: Add sexy 3D render and huge slogan here 
-              <img src="..." className="w-full h-full object-cover" />
-              <h1 className="...">SLOGAN</h1>
-            */}
+          {/* Hero Render */}
+          <div className="w-full rounded-3xl border border-accent/20 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl mb-12" style={{ aspectRatio: '21/9' }}>
+            <img src="/HEYULA.png" alt="HEYULA 3D Render" className="w-full h-full object-cover" />
           </div>
 
           <div className="text-center" style={{ marginBottom: '4rem' }}>
