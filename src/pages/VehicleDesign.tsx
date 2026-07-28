@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ChevronRight, ChevronLeft, X } from 'lucide-react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Float, Environment, ContactShadows, useGLTF } from '@react-three/drei'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { createPortal } from 'react-dom'
 
 const galleryImages = [
@@ -13,27 +11,7 @@ const galleryImages = [
   "/gallery/IMG_2522_2.jpg",
   "/gallery/IMG_2562.jpg"
 ];
-import * as THREE from 'three'
 import './VehicleDesign.css'
-
-function RealDrone() {
-  const { scene } = useGLTF('/zifirDrone.glb')
-  const droneRef = useRef<THREE.Group>(null)
-
-  useFrame(() => {
-    if (droneRef.current) {
-      droneRef.current.rotation.y += 0.005
-    }
-  })
-
-  return (
-    <group position={[0, -1.5, 0]} ref={droneRef}>
-      <primitive object={scene} scale={15} />
-    </group>
-  )
-}
-
-useGLTF.preload('/zifirDrone.glb')
 
 export default function VehicleDesign() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -84,86 +62,57 @@ export default function VehicleDesign() {
         document.body
       )}
       
-      {/* SpaceX Style Hero */}
-      <section className="relative h-screen flex flex-col items-center justify-start pt-32 md:pt-40 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Canvas 
-            camera={{ position: [0, 2, 8], fov: 45 }} 
-            dpr={[1, 1.5]} /* Limits resolution on high-DPI screens to prevent GPU bottleneck */
-            gl={{ antialias: true, powerPreference: "high-performance" }}
-          >
-            <ambientLight intensity={0.7} />
-            <spotLight position={[5, 10, 5]} angle={0.3} penumbra={1} intensity={2.5} castShadow />
-            <Float speed={2} rotationIntensity={0.2} floatIntensity={1.5}>
-              <RealDrone />
-            </Float>
-            <ContactShadows 
-              position={[0, -3, 0]} 
-              opacity={0.6} 
-              scale={30} 
-              blur={2.5} 
-              far={4} 
-              color="#0A84FF" 
-              resolution={256} 
-              frames={1} /* Bake the shadow once instead of rendering 60 times a second */
-            />
-            <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 1.5} autoRotate autoRotateSpeed={0.5} />
-            <Environment preset="city" />
-          </Canvas>
-        </div>
-        
-        {/* Overlay gradient so text is readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-[#030712] pointer-events-none z-0"></div>
-
-        <div className="relative z-10 container flex flex-col items-center text-center pointer-events-none">
-          <motion.h1 
-            className="text-7xl md:text-9xl font-black mb-4"
-            style={{ 
-              letterSpacing: '0.15em', 
-              textShadow: '0 0 80px rgba(10, 132, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.2)' 
-            }}
-            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-          >
-            HEYULA
-          </motion.h1>
+      {/* New Cinematic Hero Section */}
+      <section className="w-full flex flex-col items-center justify-start bg-[#030712] pt-24 md:pt-32 pb-8">
+        <div className="relative w-full max-w-[1920px] mx-auto shadow-2xl border-y border-gray-800/60" style={{ aspectRatio: '21/9' }}>
+          <img src="/HEYULA.png" alt="HEYULA 3D Render" className="absolute inset-0 w-full h-full object-cover object-center" />
           
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 border-t border-gray-800/60 w-full max-w-4xl backdrop-blur-sm bg-black/10 rounded-3xl p-8"
-            style={{ marginTop: '3rem' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <div className="stat-block text-center">
-              <div className="text-4xl font-bold text-white mb-1">8.75<span className="text-lg text-gray-500 ml-1">kg</span></div>
-              <div className="text-xs text-gray-500 uppercase tracking-widest">MTOW</div>
-            </div>
-            <div className="stat-block text-center">
-              <div className="text-4xl font-bold text-white mb-1">32<span className="text-lg text-gray-500 ml-1">min</span></div>
-              <div className="text-xs text-gray-500 uppercase tracking-widest">Flight Time</div>
-            </div>
-            <div className="stat-block text-center">
-              <div className="text-4xl font-bold text-white mb-1">8<span className="text-lg text-gray-500 ml-1">kg</span></div>
-              <div className="text-xs text-gray-500 uppercase tracking-widest">Payload Cap</div>
-            </div>
-            <div className="stat-block text-center">
-              <div className="text-4xl font-bold text-white mb-1">20<span className="text-lg text-gray-500 ml-1">km</span></div>
-              <div className="text-xs text-gray-500 uppercase tracking-widest">Telemetry Range</div>
-            </div>
-          </motion.div>
+          {/* Subtle gradient to ensure text readability at the bottom */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
+          
+          {/* Stats Overlay - Bottom Left */}
+          <div className="absolute bottom-0 left-0 p-6 md:p-12 pointer-events-none">
+            <motion.div 
+              className="flex gap-8 md:gap-16"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="stat-block text-left">
+                <div className="text-3xl md:text-5xl font-bold text-white mb-1">8.75<span className="text-base md:text-xl text-gray-400 ml-1">kg</span></div>
+                <div className="text-xs md:text-sm text-gray-400 uppercase tracking-widest font-bold">MTOW</div>
+              </div>
+              <div className="stat-block text-left">
+                <div className="text-3xl md:text-5xl font-bold text-white mb-1">32<span className="text-base md:text-xl text-gray-400 ml-1">min</span></div>
+                <div className="text-xs md:text-sm text-gray-400 uppercase tracking-widest font-bold">Flight Time</div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Stats Overlay - Bottom Right */}
+          <div className="absolute bottom-0 right-0 p-6 md:p-12 pointer-events-none">
+            <motion.div 
+              className="flex gap-8 md:gap-16"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="stat-block text-right">
+                <div className="text-3xl md:text-5xl font-bold text-white mb-1">8<span className="text-base md:text-xl text-gray-400 ml-1">kg</span></div>
+                <div className="text-xs md:text-sm text-gray-400 uppercase tracking-widest font-bold">Payload Cap</div>
+              </div>
+              <div className="stat-block text-right">
+                <div className="text-3xl md:text-5xl font-bold text-white mb-1">20<span className="text-base md:text-xl text-gray-400 ml-1">km</span></div>
+                <div className="text-xs md:text-sm text-gray-400 uppercase tracking-widest font-bold">Telemetry Range</div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Engineering Process - Web Format */}
-      <section className="bg-[#030712] relative z-10" style={{ paddingTop: '8rem', paddingBottom: '8rem', marginTop: '4rem' }}>
+      <section className="bg-[#030712] relative z-10" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
         <div className="container max-w-6xl">
-          {/* Hero Render */}
-          <div className="w-full rounded-3xl border border-accent/20 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl mb-12" style={{ aspectRatio: '21/9' }}>
-            <img src="/HEYULA.png" alt="HEYULA 3D Render" className="w-full h-full object-cover" />
-          </div>
-
           <div className="text-center" style={{ marginBottom: '4rem' }}>
             <h2 className="text-4xl font-bold mb-6">Engineering the Machine</h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
