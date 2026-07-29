@@ -196,6 +196,7 @@ export default function DevLog() {
                             muted
                             playsInline
                             loop
+                            autoPlay
                           />
                           <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/50">
                             <Play className="text-white w-12 h-12 opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-110 transform" fill="currentColor" />
@@ -272,6 +273,8 @@ export default function DevLog() {
               <video 
                 src={zoomedMedia.url} 
                 controls
+                autoPlay
+                playsInline
                 className="lightbox-image"
                 style={{ outline: 'none', background: 'transparent' }}
               />
