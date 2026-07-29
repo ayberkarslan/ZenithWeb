@@ -12,6 +12,11 @@ import Team from './pages/Team'
 function ScrollAndHighlight() {
   const location = useLocation()
 
+  // Auto-scroll to top smoothly when changing pages (paths)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [location.pathname])
+
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const search = params.get('search')

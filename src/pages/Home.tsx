@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useThree, Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Float, Environment, ContactShadows, useFBX, Center } from '@react-three/drei'
-import { useRef, useEffect, Suspense } from 'react'
+import { useRef, useEffect, useState, Suspense } from 'react'
 import * as THREE from 'three'
 import './Home.css'
 
@@ -102,6 +102,13 @@ useFBX.preload('/Zenith.fbx')
 
 export default function Home() {
   const orbitRef = useRef<any>(null)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
     <div className="home relative">
@@ -135,7 +142,7 @@ export default function Home() {
             </Float>
 
             <ContactShadows position={[0, -1.5, 0]} opacity={0.9} scale={60} blur={2.5} far={10} color="#0A84FF" resolution={1024} />
-            <OrbitControls ref={orbitRef} enableZoom={false} maxPolarAngle={Math.PI / 1.5} target={[0, -0.3, 0]} />
+            <OrbitControls ref={orbitRef} enableZoom={false} enablePan={!isMobile} enableRotate={!isMobile} maxPolarAngle={Math.PI / 1.5} target={[0, -0.3, 0]} />
             <CameraResetter orbitRef={orbitRef} />
             <Environment files="/potsdamer_platz_1k.hdr" />
           </Canvas>
