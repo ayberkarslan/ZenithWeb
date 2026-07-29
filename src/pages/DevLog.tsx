@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useLocation } from 'react-router-dom'
-import { AlertTriangle, CheckCircle, X } from 'lucide-react'
+import { AlertTriangle, CheckCircle, X, Play } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './DevLog.css'
 
@@ -177,14 +177,18 @@ export default function DevLog() {
                       {item.type === 'image' ? (
                         <img src={item.url} alt={selectedLog.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
                       ) : (
-                        <video 
-                          src={item.url} 
-                          className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" 
-                          muted={!item.sound}
-                          playsInline
-                          loop
-                          autoPlay
-                        />
+                        <>
+                          <video 
+                            src={item.url} 
+                            className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" 
+                            muted
+                            playsInline
+                            loop
+                          />
+                          <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/50">
+                            <Play className="text-white w-12 h-12 opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-110 transform" fill="currentColor" />
+                          </div>
+                        </>
                       )}
                     </div>
                   ))}
@@ -230,7 +234,6 @@ export default function DevLog() {
               <video 
                 src={zoomedMedia.url} 
                 controls
-                autoPlay
                 className="lightbox-image"
                 style={{ outline: 'none', background: 'transparent' }}
               />

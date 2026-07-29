@@ -4,9 +4,10 @@ import './Sponsors.css'
 export default function Sponsors() {
   const sponsors = [
     { name: "Aco Recycling", tier: "Platinum", link: "https://www.acorecycling.com/", logo: "/aco-recycling.png" },
-    { name: "Sponsor 2", tier: "Gold", link: "#", logo: "/sponsor.jpg" },
-    { name: "Sponsor 3", tier: "Gold", link: "#", logo: "/sponsor.jpg" },
-    { name: "YTU", tier: "University", link: "#", logo: "/sponsor.jpg" },
+    { name: "YTÜ Yıldız Teknopark", tier: "Gold", link: "https://yildizteknopark.com.tr/", logo: "/teknopark_logo.png" },
+    { name: "Aviolife", tier: "Silver", link: "https://www.aviolife.com/", logo: "/aviolife_logo.png" },
+    { name: "BeAero", tier: "Bronze", link: "https://www.be-aero.com/", logo: "/beaero_logo.png" },
+    { name: "Yıldız Technical University", tier: "University", link: "https://yildiz.edu.tr/", logo: "/ytu_logo.png" },
   ]
 
   return (
@@ -37,8 +38,16 @@ export default function Sponsors() {
                 <span 
                   className="text-sm uppercase tracking-wider font-bold"
                   style={{
-                    color: sponsor.tier === 'Platinum' ? '#E5E4E2' : sponsor.tier === 'Gold' ? '#FFD700' : 'var(--accent-color)',
-                    textShadow: sponsor.tier === 'Platinum' ? '0 0 12px rgba(229, 228, 226, 0.7)' : sponsor.tier === 'Gold' ? '0 0 12px rgba(255, 215, 0, 0.7)' : '0 0 12px rgba(10, 132, 255, 0.7)'
+                    color: sponsor.tier === 'Platinum' ? '#E5E4E2' : 
+                           sponsor.tier === 'Gold' ? '#FFD700' : 
+                           sponsor.tier === 'Silver' ? '#C0C0C0' : 
+                           sponsor.tier === 'Bronze' ? '#CD7F32' : 
+                           'var(--accent-color)',
+                    textShadow: sponsor.tier === 'Platinum' ? '0 0 12px rgba(229, 228, 226, 0.7)' : 
+                                sponsor.tier === 'Gold' ? '0 0 12px rgba(255, 215, 0, 0.7)' : 
+                                sponsor.tier === 'Silver' ? '0 0 12px rgba(192, 192, 192, 0.7)' : 
+                                sponsor.tier === 'Bronze' ? '0 0 12px rgba(205, 127, 50, 0.7)' : 
+                                '0 0 12px rgba(10, 132, 255, 0.7)'
                   }}
                 >
                   {sponsor.tier} Partner
