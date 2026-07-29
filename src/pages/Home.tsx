@@ -2,28 +2,30 @@ import { ArrowRight, Users, ChevronRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useThree, Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Float, Environment, ContactShadows, useGLTF } from '@react-three/drei'
-import { useRef, useEffect } from 'react'
+import { OrbitControls, Float, Environment, ContactShadows, useFBX, Center } from '@react-three/drei'
+import { useRef, useEffect, Suspense } from 'react'
 import * as THREE from 'three'
 import './Home.css'
 
 // The real drone model from the team
 function RealDrone() {
-  const { scene } = useGLTF('/zifirDrone.glb')
+  const fbx = useFBX('/Zenith.fbx')
   const droneRef = useRef<THREE.Group>(null)
 
   useFrame((_, delta) => {
     if (droneRef.current) {
       droneRef.current.rotation.y += 0.003 // Slow, elegant rotation
-      // Faster landing animation from lower height
-      droneRef.current.position.y = THREE.MathUtils.lerp(droneRef.current.position.y, 0, delta * 4)
+      // Hızlıca gökyüzünden inip yavaşça yerine oturma efekti
+      droneRef.current.position.y = THREE.MathUtils.lerp(droneRef.current.position.y, 0, delta * 3)
     }
   })
 
-  // Start at Y=4 for landing animation
   return (
-    <group position={[0, 4, 0]} ref={droneRef}>
-      <primitive object={scene} scale={13} />
+    // Drone'u çok daha yüksekten (Y=15) başlatıyoruz ki tam üstten uçarak gelsin
+    <group position={[0, 15, 0]} ref={droneRef}>
+      <Center>
+        <primitive object={fbx} scale={0.0035} rotation={[-Math.PI / 2, 0, 0]} />
+      </Center>
     </group>
   )
 }
@@ -96,7 +98,7 @@ function CameraResetter({ orbitRef }: { orbitRef: React.RefObject<any> }) {
 }
 
 // Preload the model so it doesn't pop in late
-useGLTF.preload('/zifirDrone.glb')
+useFBX.preload('/Zenith.fbx')
 
 export default function Home() {
   const orbitRef = useRef<any>(null)
@@ -111,17 +113,28 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Canvas camera={{ position: [0, 1.5, 6], fov: 45 }} dpr={[1, 2]}>
             <CameraOffset />
-            <ambientLight intensity={0.6} />
-            <spotLight position={[5, 10, 5]} angle={0.25} penumbra={1} intensity={2} castShadow />
+            {/* Normal aydınlatma: Siyah dronun detaylarını ortaya çıkarmak için çok güçlü ışık */}
+            <ambientLight intensity={3.5} />
+            <directionalLight position={[5, 10, 5]} intensity={4} castShadow />
+            {/* Önden vuran ışık */}
+            <pointLight position={[0, 2, 5]} intensity={3} />
+            {/* Arka planda dronun arkasından vuran güçlü ve geniş mavi ışık (Silüeti ortaya çıkarır) */}
+            <spotLight position={[0, 5, -6]} angle={1.2} penumbra={0.5} intensity={500} color="#0A84FF" />
+            <pointLight position={[5, 2, -5]} intensity={200} color="#0A84FF" />
+            <pointLight position={[-5, 2, -5]} intensity={200} color="#0A84FF" />
             
-
+            {/* Alttan vuran ışık */}
+            <pointLight position={[0, -5, 0]} intensity={3} />
+            
             <Float speed={2} rotationIntensity={0.1} floatIntensity={1.2}>
               <group position={[0, -0.3, 0]}>
-                <RealDrone />
+                <Suspense fallback={null}>
+                  <RealDrone />
+                </Suspense>
               </group>
             </Float>
 
-            <ContactShadows position={[0, -1.5, 0]} opacity={0.9} scale={25} blur={2.5} far={4} color="#0A84FF" />
+            <ContactShadows position={[0, -1.5, 0]} opacity={0.9} scale={60} blur={2.5} far={10} color="#0A84FF" resolution={1024} />
             <OrbitControls ref={orbitRef} enableZoom={false} maxPolarAngle={Math.PI / 1.5} target={[0, -0.3, 0]} />
             <CameraResetter orbitRef={orbitRef} />
             <Environment preset="city" />
@@ -136,8 +149,8 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              YTU<br/>
-              <span className="text-accent">UASK</span>
+              YTU UASK<br/>
+              <span className="text-accent">ZENITH TEAM</span>
             </motion.h1>
             <motion.p 
               className="hero-subtitle-2d"

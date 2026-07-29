@@ -71,39 +71,39 @@ export default function VehicleDesign() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
           
           {/* Stats Overlay - Bottom Left */}
-          <div className="absolute bottom-0 left-0 p-6 md:p-12 pointer-events-none">
+          <div className="absolute pointer-events-none" style={{ bottom: '3rem', left: '4rem' }}>
             <motion.div 
-              className="flex gap-8 md:gap-16"
+              style={{ display: 'flex', gap: '4rem' }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="stat-block text-left">
-                <div className="text-3xl md:text-5xl font-bold text-white mb-1">8.75<span className="text-base md:text-xl text-gray-400 ml-1">kg</span></div>
-                <div className="text-xs md:text-sm text-gray-400 uppercase tracking-widest font-bold">MTOW</div>
+                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem' }}>8.75<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>kg</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>MTOW</div>
               </div>
               <div className="stat-block text-left">
-                <div className="text-3xl md:text-5xl font-bold text-white mb-1">32<span className="text-base md:text-xl text-gray-400 ml-1">min</span></div>
-                <div className="text-xs md:text-sm text-gray-400 uppercase tracking-widest font-bold">Flight Time</div>
+                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem' }}>32<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>min</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>Flight Time</div>
               </div>
             </motion.div>
           </div>
 
           {/* Stats Overlay - Bottom Right */}
-          <div className="absolute bottom-0 right-0 p-6 md:p-12 pointer-events-none">
+          <div className="absolute pointer-events-none" style={{ bottom: '3rem', right: '4rem' }}>
             <motion.div 
-              className="flex gap-8 md:gap-16"
+              style={{ display: 'flex', gap: '4rem' }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="stat-block text-right">
-                <div className="text-3xl md:text-5xl font-bold text-white mb-1">8<span className="text-base md:text-xl text-gray-400 ml-1">kg</span></div>
-                <div className="text-xs md:text-sm text-gray-400 uppercase tracking-widest font-bold">Payload Cap</div>
+                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem' }}>8<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>kg</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>Payload Cap</div>
               </div>
               <div className="stat-block text-right">
-                <div className="text-3xl md:text-5xl font-bold text-white mb-1">20<span className="text-base md:text-xl text-gray-400 ml-1">km</span></div>
-                <div className="text-xs md:text-sm text-gray-400 uppercase tracking-widest font-bold">Telemetry Range</div>
+                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem' }}>20<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>km</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>Telemetry Range</div>
               </div>
             </motion.div>
           </div>
@@ -111,7 +111,7 @@ export default function VehicleDesign() {
       </section>
 
       {/* Engineering Process - Web Format */}
-      <section className="bg-[#030712] relative z-10" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
+      <section className="bg-[#030712] relative z-10" style={{ paddingTop: '16rem', paddingBottom: '8rem' }}>
         <div className="container max-w-6xl">
           <div className="text-center" style={{ marginBottom: '4rem' }}>
             <h2 className="text-4xl font-bold mb-6">Engineering the Machine</h2>

@@ -20,12 +20,12 @@
 }
 
 .hero-text-block {
-  padding-left: 10vw;
+  padding-left: 7vw;
   pointer-events: auto;
 }
 
 .hero-title-2d {
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: clamp(2.5rem, 5vw, 5rem);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 0.5rem;
