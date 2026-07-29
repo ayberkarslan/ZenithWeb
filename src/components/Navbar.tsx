@@ -43,6 +43,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
     keys: [
       { name: 'title', weight: 3.0 },
       { name: 'description', weight: 2.0 },
+      { name: 'content', weight: 1.5 },
       { name: 'category', weight: 1.0 }
     ],
     threshold: 0.2, // Strict typo tolerance to avoid garbage subsequence matches

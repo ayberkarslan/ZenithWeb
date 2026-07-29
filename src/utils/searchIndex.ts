@@ -6,6 +6,7 @@ export interface SearchRecord {
   description: string;
   category: SearchCategory;
   url: string;
+  content?: string;
 }
 
 // Vite glob import for blogs
@@ -105,6 +106,7 @@ export function buildSearchIndex(): SearchRecord[] {
         description: desc,
         category: 'Blog',
         url: `/dev-log?post=${postId}`,
+        content: plainContent,
       });
     }
   });
