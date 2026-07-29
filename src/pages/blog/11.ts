@@ -13,5 +13,5 @@ We integrated Gazebo 3D for physics and visual simulation, tied directly to Ardu
 ### Seamless Reality Transition
 Our GCS now features a one-click toggle between SITL simulation and physical hardware. We can draw a mission on the node editor, watch the virtual drone execute it with precise physical responses in Gazebo, and once validated, deploy the exact same task graph to the real aircraft on the flight line. This tightly coupled software ecosystem provides us with unparalleled confidence during autonomous operations.`,
   status: "success",
-  image: null
+  image: "/blog/gazebo_sim.png"
 }
