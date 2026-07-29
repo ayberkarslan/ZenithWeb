@@ -156,3 +156,21 @@
   border-radius: 0.75rem;
   user-select: none;
 }
+
+/* Fallback responsive classes to ensure 100% correct hiding/showing */
+.desktop-stats {
+  display: block !important;
+}
+
+.mobile-stats {
+  display: none !important;
+}
+
+@media (max-width: 991px) {
+  .desktop-stats {
+    display: none !important;
+  }
+  .mobile-stats {
+    display: block !important;
+  }
+}

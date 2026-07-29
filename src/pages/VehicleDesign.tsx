@@ -68,10 +68,10 @@ export default function VehicleDesign() {
           <img src="/HEYULA.png" alt="HEYULA 3D Render" className="absolute inset-0 w-full h-full object-cover object-center" />
           
           {/* Subtle gradient to ensure text readability at the bottom (desktop only) */}
-          <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
+          <div className="desktop-stats absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
           
           {/* Desktop Stats Overlay - Bottom Left */}
-          <div className="hidden md:block absolute pointer-events-none" style={{ bottom: '3rem', left: '4rem' }}>
+          <div className="desktop-stats absolute pointer-events-none" style={{ bottom: '3rem', left: '4rem' }}>
             <motion.div 
               style={{ display: 'flex', gap: '4rem' }}
               initial={{ opacity: 0, x: -20 }}
@@ -90,7 +90,7 @@ export default function VehicleDesign() {
           </div>
 
           {/* Desktop Stats Overlay - Bottom Right */}
-          <div className="hidden md:block absolute pointer-events-none" style={{ bottom: '3rem', right: '4rem' }}>
+          <div className="desktop-stats absolute pointer-events-none" style={{ bottom: '3rem', right: '4rem' }}>
             <motion.div 
               style={{ display: 'flex', gap: '4rem' }}
               initial={{ opacity: 0, x: 20 }}
@@ -110,7 +110,7 @@ export default function VehicleDesign() {
         </div>
 
         {/* Mobile Stats Grid - Below the image */}
-        <div className="md:hidden w-full px-4 pt-6 pb-2">
+        <div className="mobile-stats w-full px-4 pt-6 pb-2">
           <div className="grid grid-cols-2 gap-4">
             <div className="stat-block text-center bg-gray-900/50 rounded-xl p-3 border border-gray-800 shadow-lg">
               <div className="font-bold text-white mb-1 text-2xl">8.75<span className="text-gray-400 ml-1 text-sm">kg</span></div>
