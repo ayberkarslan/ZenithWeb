@@ -117,7 +117,7 @@ export default function Home() {
       
       {/* Hero Section with 3D Canvas */}
       <section className="hero relative">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 pointer-events-none md:pointer-events-auto">
           <Canvas camera={{ position: [0, 1.5, 6], fov: 45 }} dpr={[1, 2]}>
             <CameraOffset />
             {/* Normal aydınlatma: Siyah dronun detaylarını ortaya çıkarmak için çok güçlü ışık */}
