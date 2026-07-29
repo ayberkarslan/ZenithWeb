@@ -183,31 +183,33 @@ export default function DevLog() {
       </div>
 
       {/* Image Zoom Modal */}
-      <AnimatePresence>
-        {zoomedImage && createPortal(
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
-            onClick={() => setZoomedImage(null)}
-          >
-            <button className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors">
-              <X size={32} />
-            </button>
-            <motion.img 
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              src={zoomedImage} 
-              alt="Enlarged view" 
-              className="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </motion.div>,
-          document.body
-        )}
-      </AnimatePresence>
+      {createPortal(
+        <AnimatePresence>
+          {zoomedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+              onClick={() => setZoomedImage(null)}
+            >
+              <button className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors">
+                <X size={32} />
+              </button>
+              <motion.img 
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+                src={zoomedImage} 
+                alt="Enlarged view" 
+                className="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   )
 }
