@@ -3,7 +3,7 @@ import './Sponsors.css'
 
 export default function Sponsors() {
   const sponsors = [
-    { name: "Sponsor 1", tier: "Platinum", link: "#", logo: "/sponsor.jpg" },
+    { name: "Aco Recycling", tier: "Platinum", link: "https://www.acorecycling.com/", logo: "/aco-recycling.png" },
     { name: "Sponsor 2", tier: "Gold", link: "#", logo: "/sponsor.jpg" },
     { name: "Sponsor 3", tier: "Gold", link: "#", logo: "/sponsor.jpg" },
     { name: "YTU", tier: "University", link: "#", logo: "/sponsor.jpg" },

@@ -2,16 +2,16 @@ export const log = {
   id: 10,
   tag: "Software",
   date: "July 25, 2026",
-  title: "Building Drode: Our Fully Proprietary Node-Based GCS",
-  shortDesc: "Retiring our legacy DOST architecture in favor of 'Drode'—our completely custom ReactFlow ground control ecosystem.",
-  content: `### Retiring the DOST Architecture
-During our previous campaigns at Teknofest, we relied heavily on "DOST"—a monolithic Python-based execution engine we developed for mission control. While DOST was highly functional for sequential tasks, it lacked the dynamic flexibility required for the complex, non-linear flight scenarios of SUAS 2026. Standard platforms like Mission Planner also felt too rigid to seamlessly integrate with our custom computer vision pipelines.
+  title: "Building \"Drode\": Our Fully Proprietary Node-Based GCS",
+  shortDesc: "Evolving our DOST architecture by pairing it with \"Drode\"—our completely custom ReactFlow ground control ecosystem.",
+  content: `### Evolving the DOST Architecture
+During our previous campaigns at Teknofest, we relied heavily on "DOST"—our Python-based execution engine. While DOST was highly functional, its monolithic structure lacked the dynamic visual flexibility required for the complex, non-linear flight scenarios of SUAS 2026.
 
-### Enter Drode (Drone + Node)
-We decided to architect a completely proprietary Ground Control Station (GCS) from scratch using React, TypeScript, and Vite, which we named **Drode**. The core innovation of Drode is its Node-Based mission planner built on ReactFlow. Instead of executing raw coordinate lists, missions are now designed as visual flowcharts. We can simply drag and drop specific action nodes—Takeoff, Waypoint, Gimbal Control, and Shape Detection—and link them logically to create branching scenarios (e.g., "Scan Area A, if target not found, proceed to Area B").
+### Enter "Drode" (Drone + Node)
+Instead of relying on rigid standard platforms like Mission Planner, we decided to build a completely proprietary Ground Control Station (GCS) frontend using React, TypeScript, and Vite, which we named **"Drode"**. The core innovation of "Drode" is its Node-Based mission planner built on ReactFlow. Missions are now designed as visual flowcharts. We can simply drag and drop specific action nodes—Takeoff, Waypoint, Gimbal Control, and Shape Detection—and link them logically to create branching scenarios.
 
-### MAVLink Backend Bridge
-To translate Drode's visual nodes into actionable flight commands, we developed a high-performance Python backend (Sirius) running on FastAPI. When a mission is deployed, the UI generates a JSON task graph. Our custom Task Graph Factory parses this and feeds it to the flight controller via pymavlink. Built-in telemetry loops run at high frequencies, featuring auto-reconnect algorithms to ensure we maintain absolute control, even during momentary radio link drops.`,
+### The "Drode" and DOST Bridge
+To translate "Drode"'s visual nodes into actionable flight commands, we completely revamped our DOST Python backend, now running asynchronously on FastAPI. When a mission is deployed, the UI generates a JSON task graph. DOST parses this and feeds it to the flight controller via pymavlink. Built-in telemetry loops run at high frequencies, featuring auto-reconnect algorithms to ensure we maintain absolute control during autonomous flight.`,
   status: "success",
   image: "/blog/drode_gcs.png"
 }
