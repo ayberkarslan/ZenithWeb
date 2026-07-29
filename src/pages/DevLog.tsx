@@ -21,7 +21,12 @@ const modules = import.meta.glob('./blog/*.ts', { eager: true })
 const devLogs: LogEntry[] = Object.values(modules)
   .map((mod: any) => mod.log as LogEntry)
   .filter(Boolean)
-  .sort((a, b) => b.id - a.id) // Sort by newest (highest id) first
+  .sort((a, b) => {
+    const timeA = new Date(a.date).getTime()
+    const timeB = new Date(b.date).getTime()
+    if (timeA !== timeB) return timeB - timeA
+    return b.id - a.id
+  }) // Sort by newest (highest date/id) first
 
 const ALL_TAGS = ["All", "Avionics", "Computer Vision", "Hardware", "Software"]
 
@@ -171,7 +176,7 @@ export default function DevLog() {
                   {selectedLog.media.map((item, idx) => (
                     <div 
                       key={idx}
-                      className={`relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in ${item.portrait ? 'w-full max-w-xs mx-auto' : ''}`}
+                      className={`relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in ${item.portrait ? 'w-full max-w-[220px] mx-auto' : ''}`}
                       onClick={() => setZoomedMedia({ type: item.type, url: item.url })}
                     >
                       {item.type === 'image' ? (
@@ -180,7 +185,7 @@ export default function DevLog() {
                         <>
                           <video 
                             src={item.url} 
-                            className={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${item.portrait ? 'h-[500px]' : 'h-64'}`} 
+                            className={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${item.portrait ? 'h-[380px]' : 'h-64'}`} 
                             muted
                             playsInline
                             loop
@@ -217,7 +222,7 @@ export default function DevLog() {
                   disabled={devLogs.findIndex(l => l.id === selectedLog.id) >= devLogs.length - 1}
                   className="btn bg-black/30 border border-glass-border hover:border-accent disabled:opacity-30 disabled:cursor-not-allowed flex-1 text-center"
                 >
-                  &larr; Previous Post
+                  &larr; Previous (Older)
                 </button>
                 <button
                   onClick={() => {
@@ -228,7 +233,7 @@ export default function DevLog() {
                   disabled={devLogs.findIndex(l => l.id === selectedLog.id) <= 0}
                   className="btn btn-primary disabled:opacity-30 disabled:cursor-not-allowed flex-1 text-center"
                 >
-                  Next Post &rarr;
+                  Next (Newer) &rarr;
                 </button>
               </div>
             </motion.div>
