@@ -79,12 +79,12 @@ export default function VehicleDesign() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="stat-block text-left">
-                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-[3rem]">8.75<span className="text-gray-400 ml-1 text-xs md:text-[1.25rem]">kg</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-[0.875rem]">MTOW</div>
+                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-5xl leading-none">8.75<span className="text-gray-400 ml-1 text-xs md:text-xl">kg</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-sm mt-1">MTOW</div>
               </div>
               <div className="stat-block text-left">
-                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-[3rem]">32<span className="text-gray-400 ml-1 text-xs md:text-[1.25rem]">min</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-[0.875rem]">Flight Time</div>
+                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-5xl leading-none">32<span className="text-gray-400 ml-1 text-xs md:text-xl">min</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-sm mt-1">Flight Time</div>
               </div>
             </motion.div>
           </div>
@@ -98,12 +98,12 @@ export default function VehicleDesign() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="stat-block text-right">
-                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-[3rem]">8<span className="text-gray-400 ml-1 text-xs md:text-[1.25rem]">kg</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-[0.875rem]">Payload Cap</div>
+                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-5xl leading-none">8<span className="text-gray-400 ml-1 text-xs md:text-xl">kg</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-sm mt-1">Payload Cap</div>
               </div>
               <div className="stat-block text-right">
-                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-[3rem]">20<span className="text-gray-400 ml-1 text-xs md:text-[1.25rem]">km</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-[0.875rem]">Telemetry Range</div>
+                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-5xl leading-none">20<span className="text-gray-400 ml-1 text-xs md:text-xl">km</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-sm mt-1">Telemetry Range</div>
               </div>
             </motion.div>
           </div>
