@@ -70,15 +70,17 @@ body:has(.fixed.inset-0) {
 
 /* Split Screen Layout */
 .dev-log-layout {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column-reverse;
   gap: 2rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 @media (min-width: 900px) {
   .dev-log-layout {
+    display: grid;
     grid-template-columns: 4fr 8fr;
     gap: 3rem;
+    align-items: start;
   }
 }

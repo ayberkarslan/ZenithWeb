@@ -106,7 +106,8 @@
     top: 80px;
     left: 0;
     right: 0;
-    background: var(--card-bg);
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(12px);
     flex-direction: column;
     padding: 2rem;
     gap: 1.5rem;

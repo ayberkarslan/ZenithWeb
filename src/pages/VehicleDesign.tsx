@@ -71,39 +71,39 @@ export default function VehicleDesign() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
           
           {/* Stats Overlay - Bottom Left */}
-          <div className="absolute pointer-events-none" style={{ bottom: '3rem', left: '4rem' }}>
+          <div className="absolute pointer-events-none bottom-2 left-2 md:bottom-12 md:left-16">
             <motion.div 
-              style={{ display: 'flex', gap: '4rem' }}
+              className="flex flex-col md:flex-row gap-2 md:gap-16"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="stat-block text-left">
-                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem' }}>8.75<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>kg</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>MTOW</div>
+                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-[3rem]">8.75<span className="text-gray-400 ml-1 text-xs md:text-[1.25rem]">kg</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-[0.875rem]">MTOW</div>
               </div>
               <div className="stat-block text-left">
-                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem' }}>32<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>min</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>Flight Time</div>
+                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-[3rem]">32<span className="text-gray-400 ml-1 text-xs md:text-[1.25rem]">min</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-[0.875rem]">Flight Time</div>
               </div>
             </motion.div>
           </div>
 
           {/* Stats Overlay - Bottom Right */}
-          <div className="absolute pointer-events-none" style={{ bottom: '3rem', right: '4rem' }}>
+          <div className="absolute pointer-events-none bottom-2 right-2 md:bottom-12 md:right-16">
             <motion.div 
-              style={{ display: 'flex', gap: '4rem' }}
+              className="flex flex-col md:flex-row gap-2 md:gap-16"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="stat-block text-right">
-                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem' }}>8<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>kg</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>Payload Cap</div>
+                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-[3rem]">8<span className="text-gray-400 ml-1 text-xs md:text-[1.25rem]">kg</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-[0.875rem]">Payload Cap</div>
               </div>
               <div className="stat-block text-right">
-                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem' }}>20<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>km</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>Telemetry Range</div>
+                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-[3rem]">20<span className="text-gray-400 ml-1 text-xs md:text-[1.25rem]">km</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-[0.875rem]">Telemetry Range</div>
               </div>
             </motion.div>
           </div>

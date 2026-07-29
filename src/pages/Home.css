@@ -43,7 +43,8 @@
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .hero-link {
