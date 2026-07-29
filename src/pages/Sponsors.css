@@ -56,3 +56,9 @@
 .tier-platinum .sponsor-logo {
   max-height: 150px;
 }
+
+.tier-university {
+  grid-column: 1 / -1;
+  max-width: 400px;
+  margin: 0 auto;
+}

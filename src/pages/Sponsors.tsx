@@ -50,7 +50,7 @@ export default function Sponsors() {
                                 '0 0 12px rgba(10, 132, 255, 0.7)'
                   }}
                 >
-                  {sponsor.tier} Partner
+                  {sponsor.tier === 'Platinum' ? 'Platinum (Main)' : sponsor.tier} Partner
                 </span>
               </div>
             </a>
