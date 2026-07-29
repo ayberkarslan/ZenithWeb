@@ -13,7 +13,8 @@ interface LogEntry {
   shortDesc: string
   content: string
   status: 'success' | 'failure' | 'warning'
-  image: string | null
+  image?: string | null
+  media?: { type: 'image' | 'video'; url: string; sound?: boolean }[]
 }
 
 const modules = import.meta.glob('./blog/*.ts', { eager: true })
@@ -28,7 +29,7 @@ export default function DevLog() {
   const location = useLocation()
   const [activeTag, setActiveTag] = useState("All")
   const [selectedLog, setSelectedLog] = useState<LogEntry>(devLogs[0])
-  const [zoomedImage, setZoomedImage] = useState<string | null>(null)
+  const [zoomedMedia, setZoomedMedia] = useState<{ type: 'image'|'video', url: string } | null>(null)
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
@@ -165,10 +166,33 @@ export default function DevLog() {
 
               <h2 className="text-3xl font-bold mb-8 leading-tight">{selectedLog.title}</h2>
 
-              {selectedLog.image && (
+              {selectedLog.media && selectedLog.media.length > 0 ? (
+                <div className={`mb-8 grid gap-4 ${selectedLog.media.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                  {selectedLog.media.map((item, idx) => (
+                    <div 
+                      key={idx}
+                      className="relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in"
+                      onClick={() => setZoomedMedia({ type: item.type, url: item.url })}
+                    >
+                      {item.type === 'image' ? (
+                        <img src={item.url} alt={selectedLog.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
+                      ) : (
+                        <video 
+                          src={item.url} 
+                          className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" 
+                          muted={!item.sound}
+                          playsInline
+                          loop
+                          autoPlay
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : selectedLog.image && (
                 <div 
                   className="mb-8 relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in"
-                  onClick={() => setZoomedImage(selectedLog.image)}
+                  onClick={() => setZoomedMedia({ type: 'image', url: selectedLog.image! })}
                 >
                   <img src={selectedLog.image} alt={selectedLog.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
@@ -183,24 +207,34 @@ export default function DevLog() {
       </div>
 
       {/* Image Zoom Modal */}
-      {zoomedImage && createPortal(
+      {zoomedMedia && createPortal(
         <div 
           className="lightbox-overlay"
-          onClick={() => setZoomedImage(null)}
+          onClick={() => setZoomedMedia(null)}
         >
           <button 
             className="lightbox-close"
-            onClick={(e) => { e.stopPropagation(); setZoomedImage(null); }}
+            onClick={(e) => { e.stopPropagation(); setZoomedMedia(null); }}
           >
             <X size={32} />
           </button>
           
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img 
-              src={zoomedImage} 
-              alt="Enlarged view" 
-              className="lightbox-image"
-            />
+            {zoomedMedia.type === 'image' ? (
+              <img 
+                src={zoomedMedia.url} 
+                alt="Enlarged view" 
+                className="lightbox-image"
+              />
+            ) : (
+              <video 
+                src={zoomedMedia.url} 
+                controls
+                autoPlay
+                className="lightbox-image"
+                style={{ outline: 'none', background: 'transparent' }}
+              />
+            )}
           </div>
         </div>,
         document.body

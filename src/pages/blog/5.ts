@@ -10,5 +10,8 @@ The foundation of any autonomous UAV is its mechanical rigidity. Today, the team
 ### Minimizing Harmonic Resonance
 By securely bolting the top and bottom plates around the central avionics bay, we create an incredibly stiff structure. This rigidity is absolutely critical; any flex in the frame would introduce harmonic vibrations that could confuse the Pixhawk's IMU and gyro sensors. The carbon fiber ensures that the frame absorbs micro vibrations rather than transmitting them.`,
   status: "success",
-  image: "/blog/frame_assembly.jpg"
+  media: [
+    { type: 'image', url: '/blog/frame_assembly.jpg' },
+    { type: 'video', url: '/blog/assembly.mov', sound: false }
+  ]
 }
