@@ -212,10 +212,10 @@ export default function DevLog() {
                 </div>
               )}
 
-              <div className="prose prose-invert max-w-none clear-none">
-                {/* Portrait Media (Float Left) */}
+              <div className={selectedLog.media?.some(m => m.portrait) ? "flex flex-col md:flex-row gap-8 items-start" : ""}>
+                {/* Portrait Media (Left Column) */}
                 {selectedLog.media?.some(m => m.portrait) && (
-                  <div className="float-left mr-8 mb-4">
+                  <div className="shrink-0 w-[260px] mx-auto md:mx-0">
                     {selectedLog.media.filter(m => m.portrait).map((item, idx) => (
                       <div 
                         key={idx}
@@ -237,7 +237,10 @@ export default function DevLog() {
                     ))}
                   </div>
                 )}
-                {renderContent(selectedLog.content)}
+                
+                <div className="prose prose-invert max-w-none flex-1 min-w-0">
+                  {renderContent(selectedLog.content)}
+                </div>
               </div>
 
               {/* Navigation */}
