@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useLocation } from 'react-router-dom'
-import { AlertTriangle, CheckCircle, Maximize2, X } from 'lucide-react'
+import { AlertTriangle, CheckCircle, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './DevLog.css'
 
@@ -170,9 +171,6 @@ export default function DevLog() {
                   onClick={() => setZoomedImage(selectedLog.image)}
                 >
                   <img src={selectedLog.image} alt={selectedLog.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <Maximize2 className="text-white w-8 h-8" />
-                  </div>
                 </div>
               )}
 
@@ -186,7 +184,7 @@ export default function DevLog() {
 
       {/* Image Zoom Modal */}
       <AnimatePresence>
-        {zoomedImage && (
+        {zoomedImage && createPortal(
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -206,7 +204,8 @@ export default function DevLog() {
               className="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain"
               onClick={(e) => e.stopPropagation()}
             />
-          </motion.div>
+          </motion.div>,
+          document.body
         )}
       </AnimatePresence>
     </div>
