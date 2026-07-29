@@ -1,7 +1,7 @@
 export const log = {
   id: 8,
   tag: "Avionics",
-  date: "July 12, 2026",
+  date: "July 10, 2026",
   title: "12S Power Integration and CoG Balancing",
   shortDesc: "Wiring our dual 6S batteries in series for a 12S high-voltage system using the Matek PDB-HEX.",
   content: `### High-Voltage Series Configuration

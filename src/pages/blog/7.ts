@@ -1,7 +1,7 @@
 export const log = {
   id: 7,
   tag: "Avionics",
-  date: "July 8, 2026",
+  date: "July 6, 2026",
   title: "High-Density Solid State Power Infrastructure",
   shortDesc: "Preparing our Profuse 30,000mAh Solid State Batteries using the HOTA D6 Pro smart charger under strict safety protocols.",
   content: `### Next-Generation Energy

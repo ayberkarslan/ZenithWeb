@@ -1,7 +1,7 @@
 export const log = {
   id: 12,
   tag: "Hardware",
-  date: "July 15, 2026",
+  date: "July 13, 2026",
   title: "Flight Testing: Landing Gear Redesign",
   shortDesc: "A harsh landing during initial flight tests revealed structural weaknesses, prompting a complete redesign of the landing gear.",
   content: `### The Initial Flight Attempt

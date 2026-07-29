@@ -1,7 +1,7 @@
 export const log = {
   id: 6,
   tag: "Hardware",
-  date: "July 5, 2026",
+  date: "July 3, 2026",
   title: "Landing Gear Integration & Baseline Setup",
   shortDesc: "Establishing the physical footprint and ground clearance required for our payload delivery mechanism.",
   content: `### Establishing the Footprint

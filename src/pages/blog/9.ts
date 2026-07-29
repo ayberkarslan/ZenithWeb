@@ -1,7 +1,7 @@
 export const log = {
   id: 9,
   tag: "Hardware",
-  date: "July 15, 2026",
+  date: "July 13, 2026",
   title: "Precision Motor Leveling and Flight Dynamics",
   shortDesc: "Utilizing bubble levels to ensure absolute zero-degree tilt on motor mounts before flight testing.",
   content: `### The Importance of Motor Alignment

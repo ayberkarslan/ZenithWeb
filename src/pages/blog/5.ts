@@ -1,7 +1,7 @@
 export const log = {
   id: 5,
   tag: "Hardware",
-  date: "July 2, 2026",
+  date: "June 30, 2026",
   title: "Core Airframe Assembly: 3K Carbon Fiber Topology",
   shortDesc: "Assembling the central plates of HEYULA's chassis with a focus on minimizing harmonic resonance.",
   content: `### Structural Foundations
