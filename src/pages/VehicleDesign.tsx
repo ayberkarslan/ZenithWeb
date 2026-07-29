@@ -67,47 +67,68 @@ export default function VehicleDesign() {
         <div className="relative w-full max-w-[1920px] mx-auto shadow-2xl border-y border-gray-800/60" style={{ aspectRatio: '21/9' }}>
           <img src="/HEYULA.png" alt="HEYULA 3D Render" className="absolute inset-0 w-full h-full object-cover object-center" />
           
-          {/* Subtle gradient to ensure text readability at the bottom */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
+          {/* Subtle gradient to ensure text readability at the bottom (desktop only) */}
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
           
-          {/* Stats Overlay - Bottom Left */}
-          <div className="absolute pointer-events-none bottom-2 left-2 md:bottom-12 md:left-16">
+          {/* Desktop Stats Overlay - Bottom Left */}
+          <div className="hidden md:block absolute pointer-events-none" style={{ bottom: '3rem', left: '4rem' }}>
             <motion.div 
-              className="flex flex-col md:flex-row gap-2 md:gap-16"
+              style={{ display: 'flex', gap: '4rem' }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="stat-block text-left">
-                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-5xl leading-none">8.75<span className="text-gray-400 ml-1 text-xs md:text-xl">kg</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-sm mt-1">MTOW</div>
+                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem', lineHeight: '1' }}>8.75<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>kg</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>MTOW</div>
               </div>
               <div className="stat-block text-left">
-                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-5xl leading-none">32<span className="text-gray-400 ml-1 text-xs md:text-xl">min</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-sm mt-1">Flight Time</div>
+                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem', lineHeight: '1' }}>32<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>min</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>Flight Time</div>
               </div>
             </motion.div>
           </div>
 
-          {/* Stats Overlay - Bottom Right */}
-          <div className="absolute pointer-events-none bottom-2 right-2 md:bottom-12 md:right-16">
+          {/* Desktop Stats Overlay - Bottom Right */}
+          <div className="hidden md:block absolute pointer-events-none" style={{ bottom: '3rem', right: '4rem' }}>
             <motion.div 
-              className="flex flex-col md:flex-row gap-2 md:gap-16"
+              style={{ display: 'flex', gap: '4rem' }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="stat-block text-right">
-                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-5xl leading-none">8<span className="text-gray-400 ml-1 text-xs md:text-xl">kg</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-sm mt-1">Payload Cap</div>
+                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem', lineHeight: '1' }}>8<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>kg</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>Payload Cap</div>
               </div>
               <div className="stat-block text-right">
-                <div className="font-bold text-white mb-0 md:mb-1 text-xl md:text-5xl leading-none">20<span className="text-gray-400 ml-1 text-xs md:text-xl">km</span></div>
-                <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px] md:text-sm mt-1">Telemetry Range</div>
+                <div className="font-bold text-white mb-1" style={{ fontSize: '3rem', lineHeight: '1' }}>20<span className="text-gray-400 ml-1" style={{ fontSize: '1.25rem' }}>km</span></div>
+                <div className="text-gray-400 uppercase tracking-widest font-bold" style={{ fontSize: '0.875rem' }}>Telemetry Range</div>
               </div>
             </motion.div>
           </div>
         </div>
+
+        {/* Mobile Stats Grid - Below the image */}
+        <div className="md:hidden w-full px-4 pt-6 pb-2">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="stat-block text-center bg-gray-900/50 rounded-xl p-3 border border-gray-800 shadow-lg">
+              <div className="font-bold text-white mb-1 text-2xl">8.75<span className="text-gray-400 ml-1 text-sm">kg</span></div>
+              <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px]">MTOW</div>
+            </div>
+            <div className="stat-block text-center bg-gray-900/50 rounded-xl p-3 border border-gray-800 shadow-lg">
+              <div className="font-bold text-white mb-1 text-2xl">32<span className="text-gray-400 ml-1 text-sm">min</span></div>
+              <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px]">Flight Time</div>
+            </div>
+            <div className="stat-block text-center bg-gray-900/50 rounded-xl p-3 border border-gray-800 shadow-lg">
+              <div className="font-bold text-white mb-1 text-2xl">8<span className="text-gray-400 ml-1 text-sm">kg</span></div>
+              <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px]">Payload Cap</div>
+            </div>
+            <div className="stat-block text-center bg-gray-900/50 rounded-xl p-3 border border-gray-800 shadow-lg">
+              <div className="font-bold text-white mb-1 text-2xl">20<span className="text-gray-400 ml-1 text-sm">km</span></div>
+              <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px]">Range</div>
+            </div>
+          </div>
       </section>
 
       {/* Engineering Process - Web Format */}
