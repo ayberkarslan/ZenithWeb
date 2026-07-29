@@ -128,20 +128,13 @@ export default function VehicleDesign() {
               <div className="text-accent text-sm font-bold tracking-widest uppercase mb-3">01 / Airframe</div>
               <h3 className="text-3xl font-bold mb-6">Carbon Fiber Rigidity</h3>
               <p className="text-gray-400 mb-8 leading-relaxed text-lg">
-                Early prototypes utilized aluminum arms which introduced severe harmonic vibrations at 80Hz, causing compass drift. By transitioning to a full 3K carbon fiber topology, we decoupled the resonance frequency from the motor RPM range.
+                To achieve the ultimate balance between weight and structural integrity, our airframe is constructed heavily using 3K Carbon Fiber. This aerospace-grade material provides exceptional tensile strength while keeping the overall vehicle mass to an absolute minimum.
               </p>
               <div className="bg-gray-900/50 border border-gray-800 p-6 rounded-2xl">
-                <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Trade-off Analysis</h4>
-                <ul className="text-gray-400 space-y-4">
-                  <li className="flex justify-between border-b border-gray-800 pb-3">
-                    <span className="font-medium text-white">Aluminum 6061</span> 
-                    <span className="text-red-400/80">High vibration transfer (80Hz)</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="font-medium text-white">3K Carbon Fiber</span> 
-                    <span className="text-green-400/80">40% lighter, dampens &gt;70Hz</span>
-                  </li>
-                </ul>
+                <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Material Advantage</h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Unlike traditional aluminum structures that can permanently deform or transmit excessive motor vibrations to the flight controller, 3K carbon fiber naturally absorbs micro-vibrations. This results in a highly rigid frame that ensures ultra-stable autonomous flight.
+                </p>
               </div>
             </div>
             <div className="rounded-3xl overflow-hidden border border-accent/30 hover:border-accent/60 transition-colors duration-500 shadow-2xl flex items-center justify-center">
@@ -161,9 +154,9 @@ export default function VehicleDesign() {
                 The brain of HEYULA is a tightly coupled architecture between the <strong>Pixhawk Cube Orange</strong> and the <strong>NVIDIA Jetson Orin Nano</strong>. The Pixhawk handles hard-real-time flight dynamics and triple-redundant state estimation, while the Jetson provides massive GPU compute for high-level AI tasks. Operating over a high-baud serial bridge, this duo offers flawless plug-and-play compatibility and zero-bottleneck data throughput.
               </p>
               <div className="bg-gray-900/50 border border-gray-800 p-6 rounded-2xl border-l-4 border-l-accent">
-                <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Test #14: High-Bandwidth Telemetry</h4>
+                <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Seamless Integration</h4>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  During intensive flight maneuvers, the Jetson streams offboard control setpoints to the Pixhawk at 100Hz with less than 2ms latency, enabling buttery-smooth autonomous trajectory tracking.
+                  The robust communication bridge between the companion computer and flight controller allows HEYULA to execute complex, AI-driven autonomous maneuvers in real-time, ensuring absolute stability even during dynamic wind conditions.
                 </p>
               </div>
             </div>
@@ -201,17 +194,10 @@ export default function VehicleDesign() {
                 For the SUAS target identification task, standard pre-trained models are insufficient. We painstakingly collected, augmented, and labeled a dataset of over 10,000 aerial images of specific alphanumeric targets, training our own specialized YOLO model.
               </p>
               <div className="bg-gray-900/50 border border-gray-800 p-6 rounded-2xl border-l-4 border-l-accent">
-                <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Performance Metrics</h4>
-                <ul className="text-gray-400 space-y-4">
-                  <li className="flex justify-between border-b border-gray-800 pb-3">
-                    <span className="font-medium text-white">Inference Speed</span> 
-                    <span className="text-accent font-bold">45 FPS on Jetson Orin</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="font-medium text-white">mAP@0.5</span> 
-                    <span className="text-accent font-bold">96.8%</span>
-                  </li>
-                </ul>
+                <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Hardware Optimization</h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  The entire vision pipeline is strictly optimized to run on the <strong>NVIDIA Jetson Orin Nano</strong>. By maximizing edge-compute capabilities, our model achieves seamless real-time target acquisition and classification under intense flight dynamics.
+                </p>
               </div>
             </div>
           </div>
