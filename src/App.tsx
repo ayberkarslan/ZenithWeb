@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { Loader } from '@react-three/drei'
 import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -99,6 +100,13 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <Loader 
+        containerStyles={{ background: '#050505' }}
+        innerStyles={{ width: '300px' }}
+        barStyles={{ height: '10px', background: '#0A84FF' }}
+        dataStyles={{ color: '#ffffff', fontSize: '1.2rem', fontFamily: 'monospace' }}
+        dataInterpolation={(p) => `YTU ZENITH${'.'.repeat((Math.floor(p / 5) % 4))} ${p.toFixed(0)}%`}
+      />
     </div>
   )
 }

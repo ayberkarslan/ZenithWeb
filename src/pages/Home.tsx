@@ -137,7 +137,7 @@ export default function Home() {
             <ContactShadows position={[0, -1.5, 0]} opacity={0.9} scale={60} blur={2.5} far={10} color="#0A84FF" resolution={1024} />
             <OrbitControls ref={orbitRef} enableZoom={false} maxPolarAngle={Math.PI / 1.5} target={[0, -0.3, 0]} />
             <CameraResetter orbitRef={orbitRef} />
-            <Environment preset="city" />
+            <Environment files="/potsdamer_platz_1k.hdr" />
           </Canvas>
         </div>
 

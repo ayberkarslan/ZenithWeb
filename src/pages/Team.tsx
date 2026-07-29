@@ -18,6 +18,50 @@ const teamData = {
   ]
 }
 
+import { useState } from 'react'
+
+function TeamMemberCard({ member }: { member: any }) {
+  const [imgLoaded, setImgLoaded] = useState(false)
+
+  return (
+    <div className="team-card glass p-8 relative flex flex-col items-center">
+      {member.isLeader && (
+        <div className="leader-badge">
+          <Crown size={14} /> TEAM LEAD
+        </div>
+      )}
+      
+      {/* Photo Area with Fade-In Logic */}
+      <div className="team-photo-container group relative flex items-center justify-center">
+         {/* Placeholder (Visible until image loads) */}
+         <div 
+           className="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
+           style={{ opacity: imgLoaded ? 0 : 1 }}
+         >
+           <User size={48} className="text-muted opacity-30" />
+         </div>
+         
+         {/* Actual Image */}
+         <img 
+           src={member.image} 
+           alt={member.name} 
+           className="team-photo absolute inset-0 transition-opacity duration-1000"
+           style={{ opacity: imgLoaded ? 1 : 0 }}
+           onLoad={() => setImgLoaded(true)}
+           onError={(e) => { e.currentTarget.style.display='none' }} 
+         />
+      </div>
+
+      <h3 className="text-xl font-bold mb-2">{member.name}</h3>
+      <p className="text-muted text-sm text-center mb-6 min-h-[40px] leading-relaxed">{member.role}</p>
+      <div className="flex gap-4 mt-auto w-full justify-center pt-5 border-t border-border/50">
+        <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted hover:text-white hover:bg-accent transition-colors"><Mail size={18} /></a>
+        <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted hover:text-white hover:bg-accent transition-colors"><Link2 size={18} /></a>
+      </div>
+    </div>
+  )
+}
+
 function TeamSection({ title, members }: { title: string, members: any[] }) {
   return (
     <div className="mb-32 mt-16 relative">
@@ -25,29 +69,7 @@ function TeamSection({ title, members }: { title: string, members: any[] }) {
         <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center tracking-wider">{title}</h2>
         <div className="team-grid">
           {members.map((member, idx) => (
-            <div key={idx} className="team-card glass p-8 relative flex flex-col items-center">
-              {member.isLeader && (
-                <div className="leader-badge">
-                  <Crown size={14} /> TEAM LEAD
-                </div>
-              )}
-              {/* Photo Area */}
-              <div className="team-photo-container group">
-                 <User size={48} className="text-muted opacity-30 absolute" />
-                 <img 
-                   src={member.image} 
-                   alt={member.name} 
-                   className="team-photo"
-                   onError={(e) => { e.currentTarget.style.display='none' }} 
-                 />
-              </div>
-              <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-              <p className="text-muted text-sm text-center mb-6 min-h-[40px] leading-relaxed">{member.role}</p>
-              <div className="flex gap-4 mt-auto w-full justify-center pt-5 border-t border-border/50">
-                <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted hover:text-white hover:bg-accent transition-colors"><Mail size={18} /></a>
-                <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted hover:text-white hover:bg-accent transition-colors"><Link2 size={18} /></a>
-              </div>
-            </div>
+            <TeamMemberCard key={idx} member={member} />
           ))}
         </div>
       </div>
