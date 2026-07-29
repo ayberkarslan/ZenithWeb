@@ -138,7 +138,7 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
               <div 
-                className="absolute top-full right-0 w-[90vw] md:w-[500px] mt-4 z-50 transition-all duration-300 p-4"
+                className="absolute top-full right-0 w-[90vw] md:w-[500px] mt-4 z-50 transition-all duration-300 p-4 overflow-hidden"
                 style={{ 
                   backgroundColor: '#050505', // Solid black as requested
                   border: '1px solid rgba(10, 132, 255, 0.3)',
@@ -183,16 +183,16 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
                             }}
                           >
                             <div className="flex justify-between items-start mb-4">
-                              <h4 className="text-[#0A84FF] text-[16px] font-semibold tracking-tight">
+                              <h4 className="text-[#0A84FF] text-[16px] font-semibold tracking-tight line-clamp-1">
                                 <HighlightText text={result.item.title} highlight={searchQuery} />
                               </h4>
-                              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-300" style={{ backgroundColor: '#1a1a1a' }}>
+                              <span className="flex items-center flex-shrink-0 ml-2 gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-300" style={{ backgroundColor: '#1a1a1a' }}>
                                 {getCategoryIcon(result.item.category)}
                                 {result.item.category}
                               </span>
                             </div>
                             {/* Description is now white as requested */}
-                            <p className="text-[14px] text-white leading-relaxed tracking-wide">
+                            <p className="text-[14px] text-white leading-relaxed tracking-wide line-clamp-2 break-words whitespace-normal overflow-hidden">
                               <HighlightText text={snippet} highlight={searchQuery} />
                             </p>
                           </Link>
