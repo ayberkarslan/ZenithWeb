@@ -14,7 +14,7 @@ interface LogEntry {
   content: string
   status: 'success' | 'failure' | 'warning'
   image?: string | null
-  media?: { type: 'image' | 'video'; url: string; sound?: boolean }[]
+  media?: MediaItem[]
 }
 
 const modules = import.meta.glob('./blog/*.ts', { eager: true })
@@ -171,7 +171,7 @@ export default function DevLog() {
                   {selectedLog.media.map((item, idx) => (
                     <div 
                       key={idx}
-                      className="relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in"
+                      className={`relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in ${item.portrait ? 'w-full max-w-xs mx-auto' : ''}`}
                       onClick={() => setZoomedMedia({ type: item.type, url: item.url })}
                     >
                       {item.type === 'image' ? (
@@ -180,7 +180,7 @@ export default function DevLog() {
                         <>
                           <video 
                             src={item.url} 
-                            className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" 
+                            className={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${item.portrait ? 'h-[500px]' : 'h-64'}`} 
                             muted
                             playsInline
                             loop
@@ -204,6 +204,32 @@ export default function DevLog() {
 
               <div className="prose prose-invert max-w-none">
                 {renderContent(selectedLog.content)}
+              </div>
+
+              {/* Navigation */}
+              <div className="mt-16 pt-8 border-t border-glass-border flex justify-between items-center gap-4">
+                <button
+                  onClick={() => {
+                    const currentIndex = devLogs.findIndex(l => l.id === selectedLog.id)
+                    const prevLog = devLogs[currentIndex + 1] // Older log is +1 index
+                    if (prevLog) setSelectedLog(prevLog)
+                  }}
+                  disabled={devLogs.findIndex(l => l.id === selectedLog.id) >= devLogs.length - 1}
+                  className="btn bg-black/30 border border-glass-border hover:border-accent disabled:opacity-30 disabled:cursor-not-allowed flex-1 text-center"
+                >
+                  &larr; Previous Post
+                </button>
+                <button
+                  onClick={() => {
+                    const currentIndex = devLogs.findIndex(l => l.id === selectedLog.id)
+                    const nextLog = devLogs[currentIndex - 1] // Newer log is -1 index
+                    if (nextLog) setSelectedLog(nextLog)
+                  }}
+                  disabled={devLogs.findIndex(l => l.id === selectedLog.id) <= 0}
+                  className="btn btn-primary disabled:opacity-30 disabled:cursor-not-allowed flex-1 text-center"
+                >
+                  Next Post &rarr;
+                </button>
               </div>
             </motion.div>
           </AnimatePresence>
