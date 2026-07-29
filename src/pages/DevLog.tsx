@@ -5,6 +5,12 @@ import { AlertTriangle, CheckCircle, X, Play } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './DevLog.css'
 
+export interface MediaItem {
+  type: 'image' | 'video'
+  url: string
+  portrait?: boolean
+}
+
 interface LogEntry {
   id: number
   tag: string
