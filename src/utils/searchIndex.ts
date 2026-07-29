@@ -90,18 +90,18 @@ export function buildSearchIndex(): SearchRecord[] {
   // 3. Dynamically Add Blogs
   Object.keys(blogModules).forEach((path) => {
     const mod = blogModules[path] as any;
-    if (mod.post) {
+    if (mod.log) {
       // path is like '../pages/blog/1.ts'
       const match = path.match(/\/(\d+)\.ts$/);
       const postId = match ? match[1] : '';
       
       // We take the excerpt or first 80 chars of the content for search preview
-      const plainContent = mod.post.content.replace(/<[^>]+>/g, '').trim();
+      const plainContent = mod.log.content.replace(/<[^>]+>/g, '').trim();
       const desc = plainContent.substring(0, 80) + '...';
 
       records.push({
         id: `blog-${postId}`,
-        title: mod.post.title,
+        title: mod.log.title,
         description: desc,
         category: 'Blog',
         url: `/dev-log?post=${postId}`,
