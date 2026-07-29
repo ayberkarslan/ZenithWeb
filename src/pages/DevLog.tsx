@@ -171,45 +171,49 @@ export default function DevLog() {
 
               <h2 className="text-3xl font-bold mb-8 leading-tight">{selectedLog.title}</h2>
 
-              {selectedLog.media && selectedLog.media.length > 0 ? (
-                <div className={`mb-8 grid gap-4 ${selectedLog.media.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                  {selectedLog.media.map((item, idx) => (
-                    <div 
-                      key={idx}
-                      className={`relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in ${item.portrait ? 'mx-auto' : 'w-full'}`}
-                      style={item.portrait ? { maxWidth: '260px', height: '460px' } : undefined}
-                      onClick={() => setZoomedMedia({ type: item.type, url: item.url })}
-                    >
-                      {item.type === 'image' ? (
-                        <img src={item.url} alt={selectedLog.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
-                      ) : (
-                        <>
-                          <video 
-                            src={item.url} 
-                            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${!item.portrait ? 'h-64' : ''}`} 
-                            muted
-                            playsInline
-                            loop
-                          />
-                          <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/50">
-                            <Play className="text-white w-12 h-12 opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-110 transform" fill="currentColor" />
-                          </div>
-                        </>
-                      )}
+              <div className={selectedLog.media?.some(m => m.portrait) ? "flex flex-col md:flex-row gap-8 items-start mb-8" : ""}>
+                <div className={selectedLog.media?.some(m => m.portrait) ? "shrink-0 w-full md:w-auto" : "mb-8 w-full"}>
+                  {selectedLog.media && selectedLog.media.length > 0 ? (
+                    <div className={`grid gap-4 ${selectedLog.media.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                      {selectedLog.media.map((item, idx) => (
+                        <div 
+                          key={idx}
+                          className={`relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in ${item.portrait ? 'mx-auto' : 'w-full'}`}
+                          style={item.portrait ? { width: '260px', height: '460px' } : undefined}
+                          onClick={() => setZoomedMedia({ type: item.type, url: item.url })}
+                        >
+                          {item.type === 'image' ? (
+                            <img src={item.url} alt={selectedLog.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
+                          ) : (
+                            <>
+                              <video 
+                                src={item.url} 
+                                className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${!item.portrait ? 'h-64' : ''}`} 
+                                muted
+                                playsInline
+                                loop
+                              />
+                              <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/50">
+                                <Play className="text-white w-12 h-12 opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-110 transform" fill="currentColor" />
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  ) : selectedLog.image && (
+                    <div 
+                      className="relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in w-full"
+                      onClick={() => setZoomedMedia({ type: 'image', url: selectedLog.image! })}
+                    >
+                      <img src={selectedLog.image} alt={selectedLog.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
+                    </div>
+                  )}
                 </div>
-              ) : selectedLog.image && (
-                <div 
-                  className="mb-8 relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in"
-                  onClick={() => setZoomedMedia({ type: 'image', url: selectedLog.image! })}
-                >
-                  <img src={selectedLog.image} alt={selectedLog.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-              )}
 
-              <div className="prose prose-invert max-w-none">
-                {renderContent(selectedLog.content)}
+                <div className="prose prose-invert max-w-none flex-1 w-full">
+                  {renderContent(selectedLog.content)}
+                </div>
               </div>
 
               {/* Navigation */}
