@@ -21,7 +21,7 @@ const devLogs: LogEntry[] = Object.values(modules)
   .filter(Boolean)
   .sort((a, b) => b.id - a.id) // Sort by newest (highest id) first
 
-const ALL_TAGS = ["All", "Avionics", "Computer Vision", "Hardware"]
+const ALL_TAGS = ["All", "Avionics", "Computer Vision", "Hardware", "Software"]
 
 export default function DevLog() {
   const location = useLocation()
