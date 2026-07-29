@@ -182,26 +182,19 @@ export default function DevLog() {
                   {selectedLog.media.map((item, idx) => (
                     <div 
                       key={idx}
-                      className={`relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in ${item.portrait ? 'mx-auto' : 'w-full'}`}
-                      style={item.portrait ? { width: '260px', height: '460px' } : undefined}
-                      onClick={() => setZoomedMedia({ type: item.type, url: item.url })}
+                      className={`relative rounded-2xl overflow-hidden border border-glass-border group ${item.type === 'image' ? 'cursor-zoom-in' : ''} ${item.portrait ? 'mx-auto' : 'w-full'}`}
+                      style={item.portrait ? { width: '260px', height: '460px', backgroundColor: '#000' } : { backgroundColor: '#000' }}
+                      onClick={() => item.type === 'image' && setZoomedMedia({ type: item.type, url: item.url })}
                     >
                       {item.type === 'image' ? (
                         <img src={item.url} alt={selectedLog.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
                       ) : (
-                        <>
-                          <video 
-                            src={item.url} 
-                            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${!item.portrait ? 'h-64' : ''}`} 
-                            muted
-                            playsInline
-                            loop
-                            autoPlay
-                          />
-                          <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/50">
-                            <Play className="text-white w-12 h-12 opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-110 transform" fill="currentColor" />
-                          </div>
-                        </>
+                        <video 
+                          src={item.url} 
+                          className={`w-full h-full object-contain ${!item.portrait ? 'h-64' : ''}`} 
+                          controls
+                          playsInline
+                        />
                       )}
                     </div>
                   ))}
