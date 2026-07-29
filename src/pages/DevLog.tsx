@@ -249,25 +249,25 @@ export default function DevLog() {
         </div>
       </div>
 
-      {/* Image Zoom Modal */}
+      {/* Media Zoom Modal */}
       {zoomedMedia && createPortal(
         <div 
-          className="lightbox-overlay"
+          className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
           onClick={() => setZoomedMedia(null)}
         >
           <button 
-            className="lightbox-close"
+            className="absolute top-6 right-6 text-white bg-black/50 hover:text-accent p-3 rounded-full transition-colors z-[1000000]"
             onClick={(e) => { e.stopPropagation(); setZoomedMedia(null); }}
           >
-            <X size={32} />
+            <X size={28} />
           </button>
           
-          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+          <div className="relative p-2 bg-slate-900/95 border border-white/10 rounded-2xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
             {zoomedMedia.type === 'image' ? (
               <img 
                 src={zoomedMedia.url} 
                 alt="Enlarged view" 
-                className="lightbox-image"
+                className="max-w-[85vw] max-h-[85vh] object-contain rounded-xl select-none"
               />
             ) : (
               <video 
@@ -275,7 +275,7 @@ export default function DevLog() {
                 controls
                 autoPlay
                 playsInline
-                className="lightbox-image"
+                className="max-w-[85vw] max-h-[85vh] object-contain rounded-xl select-none"
                 style={{ outline: 'none', background: 'transparent' }}
               />
             )}

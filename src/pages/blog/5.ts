@@ -12,6 +12,6 @@ By securely bolting the top and bottom plates around the central avionics bay, w
   status: "success",
   media: [
     { type: 'image', url: '/blog/frame_assembly.jpg' },
-    { type: 'video', url: '/blog/assembly.mov', sound: false }
+    { type: 'video', url: '/blog/assembly.mp4', sound: false }
   ]
 }
