@@ -138,13 +138,14 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
               <div 
-                className="absolute top-full left-0 right-0 w-full mt-4 z-50 transition-all duration-300 p-4"
+                className="absolute top-full right-0 w-[90vw] md:w-[500px] mt-4 z-50 transition-all duration-300 p-4"
                 style={{ 
                   backgroundColor: '#050505', // Solid black as requested
                   border: '1px solid rgba(10, 132, 255, 0.3)',
                   boxShadow: '0 20px 60px rgba(0,0,0,0.8)',
                   borderRadius: '28px',
-                  fontFamily: '"Inter", sans-serif'
+                  fontFamily: '"Inter", sans-serif',
+                  transformOrigin: 'top right'
                 }}
               >
                 {results.length > 0 ? (
@@ -158,6 +159,18 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
                       const basePath = urlParts[0];
                       const hash = urlParts[1] ? `#${urlParts[1]}` : '';
                       const finalUrl = `${basePath}${basePath.includes('?') ? '&' : '?'}search=${encodeURIComponent(searchQuery)}${hash}`;
+                      
+                      // Dynamic Snippet Generation
+                      let snippet = result.item.description;
+                      if (result.item.content && result.item.content.toLowerCase().includes(searchQuery.toLowerCase())) {
+                        const content = result.item.content;
+                        const matchIdx = content.toLowerCase().indexOf(searchQuery.toLowerCase());
+                        const start = Math.max(0, matchIdx - 40);
+                        const end = Math.min(content.length, matchIdx + searchQuery.length + 80);
+                        snippet = content.substring(start, end);
+                        if (start > 0) snippet = '...' + snippet;
+                        if (end < content.length) snippet = snippet + '...';
+                      }
                       
                       return (
                         <div key={result.item.id}>
@@ -180,7 +193,7 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
                             </div>
                             {/* Description is now white as requested */}
                             <p className="text-[14px] text-white leading-relaxed tracking-wide">
-                              <HighlightText text={result.item.description} highlight={searchQuery} />
+                              <HighlightText text={snippet} highlight={searchQuery} />
                             </p>
                           </Link>
                           {/* Elegant Separator Line */}
