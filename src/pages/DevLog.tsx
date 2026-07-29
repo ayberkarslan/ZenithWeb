@@ -176,7 +176,8 @@ export default function DevLog() {
                   {selectedLog.media.map((item, idx) => (
                     <div 
                       key={idx}
-                      className={`relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in ${item.portrait ? 'w-full max-w-[220px] mx-auto' : ''}`}
+                      className={`relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in ${item.portrait ? 'mx-auto' : 'w-full'}`}
+                      style={item.portrait ? { maxWidth: '260px', height: '460px' } : undefined}
                       onClick={() => setZoomedMedia({ type: item.type, url: item.url })}
                     >
                       {item.type === 'image' ? (
@@ -185,7 +186,7 @@ export default function DevLog() {
                         <>
                           <video 
                             src={item.url} 
-                            className={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${item.portrait ? 'h-[380px]' : 'h-64'}`} 
+                            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${!item.portrait ? 'h-64' : ''}`} 
                             muted
                             playsInline
                             loop
@@ -213,28 +214,27 @@ export default function DevLog() {
 
               {/* Navigation */}
               <div className="mt-16 pt-8 border-t border-glass-border flex justify-between items-center gap-4">
-                <button
-                  onClick={() => {
-                    const currentIndex = devLogs.findIndex(l => l.id === selectedLog.id)
-                    const prevLog = devLogs[currentIndex + 1] // Older log is +1 index
-                    if (prevLog) setSelectedLog(prevLog)
-                  }}
-                  disabled={devLogs.findIndex(l => l.id === selectedLog.id) >= devLogs.length - 1}
-                  className="btn bg-black/30 border border-glass-border hover:border-accent disabled:opacity-30 disabled:cursor-not-allowed flex-1 text-center"
-                >
-                  &larr; Previous (Older)
-                </button>
-                <button
-                  onClick={() => {
-                    const currentIndex = devLogs.findIndex(l => l.id === selectedLog.id)
-                    const nextLog = devLogs[currentIndex - 1] // Newer log is -1 index
-                    if (nextLog) setSelectedLog(nextLog)
-                  }}
-                  disabled={devLogs.findIndex(l => l.id === selectedLog.id) <= 0}
-                  className="btn btn-primary disabled:opacity-30 disabled:cursor-not-allowed flex-1 text-center"
-                >
-                  Next (Newer) &rarr;
-                </button>
+                {devLogs.findIndex(l => l.id === selectedLog.id) < devLogs.length - 1 ? (
+                  <button
+                    onClick={() => setSelectedLog(devLogs[devLogs.findIndex(l => l.id === selectedLog.id) + 1])}
+                    className="btn bg-black/30 border border-glass-border hover:border-accent flex-1 text-center"
+                  >
+                    &larr; Previous (Older)
+                  </button>
+                ) : (
+                  <div className="flex-1"></div>
+                )}
+                
+                {devLogs.findIndex(l => l.id === selectedLog.id) > 0 ? (
+                  <button
+                    onClick={() => setSelectedLog(devLogs[devLogs.findIndex(l => l.id === selectedLog.id) - 1])}
+                    className="btn btn-primary flex-1 text-center"
+                  >
+                    Next (Newer) &rarr;
+                  </button>
+                ) : (
+                  <div className="flex-1"></div>
+                )}
               </div>
             </motion.div>
           </AnimatePresence>
