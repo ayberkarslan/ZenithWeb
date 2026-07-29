@@ -217,7 +217,8 @@ export default function DevLog() {
                 {devLogs.findIndex(l => l.id === selectedLog.id) < devLogs.length - 1 ? (
                   <button
                     onClick={() => setSelectedLog(devLogs[devLogs.findIndex(l => l.id === selectedLog.id) + 1])}
-                    className="btn bg-blue-900 text-white border border-blue-800 hover:bg-blue-800 flex-1 text-center"
+                    className="btn flex-1 text-center"
+                    style={{ backgroundColor: '#1e3a8a', color: '#ffffff', borderColor: '#1e3a8a' }}
                   >
                     &larr; Previous (Older)
                   </button>
