@@ -4,17 +4,17 @@ import './Team.css'
 
 const teamData = {
   electronics: [
-    { name: "Huzeyfe Fazıl Koç", role: "Electronics & Communications Eng. / 2nd Year", image: "/team/fazil.jpg", isLeader: true },
-    { name: "Yusuf Yasir İncal", role: "Electronics & Communications Eng. / 2nd Year", image: "/team/yusuf.jpg", isLeader: false }
+    { name: "Huzeyfe Fazıl Koç", role: "Electronics & Communications Eng. / 2nd Year", image: "/team/fazil.jpg", isLeader: true, email: "hfkoc05@gmail.com" },
+    { name: "Yusuf Yasir İncal", role: "Electronics & Communications Eng. / 2nd Year", image: "/team/yusuf.jpg", isLeader: false, email: "yusfincal@gmail.com" }
   ],
   software: [
-    { name: "Muharrem Sait Çoktaş", role: "Geomatics Eng. / 2nd Year", image: "/team/sait.jpg", isLeader: false },
-    { name: "Muhammet Ayberk Arslan", role: "Control & Automation Eng. / Prep Year", image: "/team/ayberk.jpeg", isLeader: false },
-    { name: "Yusuf Kamil Turan", role: "Mechatronics Eng. / 1st Year", image: "/team/kamil.jpg", isLeader: false }
+    { name: "Muharrem Sait Çoktaş", role: "Geomatics Eng. / 2nd Year", image: "/team/sait.jpg", isLeader: false, email: "coktasmuharremsait@gmail.com" },
+    { name: "Muhammet Ayberk Arslan", role: "Control & Automation Eng. / Prep Year", image: "/team/ayberk.jpeg", isLeader: false, email: "ayberkarslann0@gmail.com" },
+    { name: "Yusuf Kamil Turan", role: "Mechatronics Eng. / 1st Year", image: "/team/kamil.jpg", isLeader: false, email: "turanberlin0@gmail.com" }
   ],
   mechanics: [
-    { name: "Selim Keleşoğlu", role: "Mechanical Eng. / 1st Year", image: "/team/selim.jpg", isLeader: false },
-    { name: "Ayaz Şenol", role: "Mechanical Eng. / 1st Year", image: "/team/ayaz.png", isLeader: false }
+    { name: "Selim Keleşoğlu", role: "Mechanical Eng. / 1st Year", image: "/team/selim.jpg", isLeader: false, email: "selimkelesoglu2006@gmail.com" },
+    { name: "Ayaz Şenol", role: "Mechanical Eng. / 1st Year", image: "/team/ayaz.png", isLeader: false, email: "ayazsenol952@gmail.com" }
   ]
 }
 
@@ -55,8 +55,11 @@ function TeamMemberCard({ member }: { member: any }) {
       <h3 className="text-xl font-bold mb-2">{member.name}</h3>
       <p className="text-muted text-sm text-center mb-6 min-h-[40px] leading-relaxed">{member.role}</p>
       <div className="flex gap-4 mt-auto w-full justify-center pt-5 border-t border-border/50">
-        <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted hover:text-white hover:bg-accent transition-colors"><Mail size={18} /></a>
-        <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted hover:text-white hover:bg-accent transition-colors"><Link2 size={18} /></a>
+        {member.email && (
+          <a href={`mailto:${member.email}`} className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted hover:text-white hover:bg-accent transition-colors" aria-label={`Email ${member.name}`}>
+            <Mail size={18} />
+          </a>
+        )}
       </div>
     </div>
   )
