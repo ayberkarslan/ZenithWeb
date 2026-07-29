@@ -183,3 +183,10 @@
     gap: 1.5rem;
   }
 }
+
+@media (max-width: 767px) {
+  .mobile-no-touch, .mobile-no-touch * {
+    pointer-events: none !important;
+    touch-action: auto !important;
+  }
+}

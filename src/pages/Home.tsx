@@ -117,7 +117,7 @@ export default function Home() {
       
       {/* Hero Section with 3D Canvas */}
       <section className="hero relative">
-        <div className="absolute inset-0 z-0 pointer-events-none md:pointer-events-auto">
+        <div className="absolute inset-0 z-0 pointer-events-none md:pointer-events-auto mobile-no-touch">
           <Canvas camera={{ position: [0, 1.5, 6], fov: 45 }} dpr={[1, 2]}>
             <CameraOffset />
             {/* Normal aydınlatma: Siyah dronun detaylarını ortaya çıkarmak için çok güçlü ışık */}
@@ -313,8 +313,8 @@ export default function Home() {
               <img 
                 src="/suas.png" 
                 alt="SUAS 2026 Mission" 
-                className="w-full object-cover border shadow-2xl" 
-                style={{ aspectRatio: '4/3', borderRadius: '1.5rem', borderColor: 'var(--glass-border)' }}
+                className="w-full h-auto object-contain border shadow-2xl" 
+                style={{ borderRadius: '1.5rem', borderColor: 'var(--glass-border)', padding: '1rem', backgroundColor: 'rgba(0,0,0,0.2)' }}
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                   e.currentTarget.nextElementSibling?.classList.remove('hidden');
