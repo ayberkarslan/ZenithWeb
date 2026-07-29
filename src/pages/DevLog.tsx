@@ -171,15 +171,15 @@ export default function DevLog() {
 
               <h2 className="text-3xl font-bold mb-8 leading-tight">{selectedLog.title}</h2>
 
-              <div className={selectedLog.media?.some(m => m.portrait) ? "flex flex-col md:flex-row gap-8 items-start mb-8" : ""}>
-                <div className={selectedLog.media?.some(m => m.portrait) ? "shrink-0 w-full md:w-auto" : "mb-8 w-full"}>
+              {/* Normal Media (Non-Portrait) */}
+              {!selectedLog.media?.some(m => m.portrait) && (
+                <div className="mb-8 w-full">
                   {selectedLog.media && selectedLog.media.length > 0 ? (
                     <div className={`grid gap-4 ${selectedLog.media.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
                       {selectedLog.media.map((item, idx) => (
                         <div 
                           key={idx}
-                          className={`relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in ${item.portrait ? 'mx-auto' : 'w-full'}`}
-                          style={item.portrait ? { width: '260px', height: '460px' } : undefined}
+                          className="relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in w-full"
                           onClick={() => setZoomedMedia({ type: item.type, url: item.url })}
                         >
                           {item.type === 'image' ? (
@@ -188,7 +188,7 @@ export default function DevLog() {
                             <>
                               <video 
                                 src={item.url} 
-                                className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${!item.portrait ? 'h-64' : ''}`} 
+                                className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" 
                                 muted
                                 playsInline
                                 loop
@@ -210,10 +210,34 @@ export default function DevLog() {
                     </div>
                   )}
                 </div>
+              )}
 
-                <div className="prose prose-invert max-w-none flex-1 w-full">
-                  {renderContent(selectedLog.content)}
-                </div>
+              <div className="prose prose-invert max-w-none clear-none">
+                {/* Portrait Media (Float Left) */}
+                {selectedLog.media?.some(m => m.portrait) && (
+                  <div className="float-left mr-8 mb-4">
+                    {selectedLog.media.filter(m => m.portrait).map((item, idx) => (
+                      <div 
+                        key={idx}
+                        className="relative rounded-2xl overflow-hidden border border-glass-border group cursor-zoom-in"
+                        style={{ width: '260px', height: '460px' }}
+                        onClick={() => setZoomedMedia({ type: item.type, url: item.url })}
+                      >
+                        <video 
+                          src={item.url} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                          muted
+                          playsInline
+                          loop
+                        />
+                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/50">
+                          <Play className="text-white w-12 h-12 opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-110 transform" fill="currentColor" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {renderContent(selectedLog.content)}
               </div>
 
               {/* Navigation */}
@@ -221,7 +245,7 @@ export default function DevLog() {
                 {devLogs.findIndex(l => l.id === selectedLog.id) < devLogs.length - 1 ? (
                   <button
                     onClick={() => setSelectedLog(devLogs[devLogs.findIndex(l => l.id === selectedLog.id) + 1])}
-                    className="btn bg-black/30 border border-glass-border hover:border-accent flex-1 text-center"
+                    className="btn bg-blue-500/10 text-blue-300 border border-blue-500/20 hover:bg-blue-500/20 flex-1 text-center"
                   >
                     &larr; Previous (Older)
                   </button>
