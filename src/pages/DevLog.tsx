@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useLocation } from 'react-router-dom'
-import { AlertTriangle, CheckCircle, X, Play } from 'lucide-react'
+import { AlertTriangle, CheckCircle, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './DevLog.css'
 
