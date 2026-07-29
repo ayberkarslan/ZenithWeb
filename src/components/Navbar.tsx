@@ -138,7 +138,7 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
             {/* Smart Search Dropdown */}
             {isSearchFocused && searchQuery.trim() !== '' && (
               <div 
-                className="absolute top-full right-0 w-[90vw] md:w-[500px] mt-4 z-50 transition-all duration-300 p-4 overflow-hidden"
+                className="absolute top-full left-0 w-full mt-4 z-50 transition-all duration-300 p-4 overflow-hidden"
                 style={{ 
                   backgroundColor: '#050505', // Solid black as requested
                   border: '1px solid rgba(10, 132, 255, 0.3)',
