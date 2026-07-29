@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Mail, Link2, User, Crown } from 'lucide-react'
+import { Mail, User, Crown } from 'lucide-react'
 import './Team.css'
 
 const teamData = {
