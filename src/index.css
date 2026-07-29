@@ -193,6 +193,8 @@ button {
 .font-medium { font-weight: 500; }
 .text-muted { color: var(--text-secondary); }
 .text-accent { color: var(--accent-color); }
+.bg-accent { background-color: var(--accent-color); }
+.border-accent { border-color: var(--accent-color); }
 
 /* Spacing */
 .mt-2 { margin-top: 0.5rem; }
