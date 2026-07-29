@@ -1,7 +1,7 @@
 export const log = {
   id: 11,
   tag: "Software",
-  date: "July 26, 2026",
+  date: "July 20, 2026",
   title: "SITL Simulation: Bridging Gazebo and ArduPilot",
   shortDesc: "Integrating a hyper-realistic 3D simulation environment to safely validate node-based missions before live flights.",
   content: `### The Need for Risk-Free Validation

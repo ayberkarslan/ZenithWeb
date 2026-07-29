@@ -1,7 +1,7 @@
 export const log = {
   id: 10,
   tag: "Software",
-  date: "July 25, 2026",
+  date: "July 18, 2026",
   title: "Building \"Drode\": Our Fully Proprietary Node-Based GCS",
   shortDesc: "Evolving our DOST architecture by pairing it with \"Drode\"—our completely custom ReactFlow ground control ecosystem.",
   content: `### Evolving the DOST Architecture

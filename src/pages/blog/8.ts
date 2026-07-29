@@ -1,7 +1,7 @@
 export const log = {
   id: 8,
   tag: "Avionics",
-  date: "July 21, 2026",
+  date: "July 12, 2026",
   title: "Dual Battery Integration and CoG Balancing",
   shortDesc: "Mounting the massive 60,000mAh total capacity and tuning the Center of Gravity for maximum stability.",
   content: `### Massive Power Payload
