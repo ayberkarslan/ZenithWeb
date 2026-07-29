@@ -129,6 +129,7 @@ export default function VehicleDesign() {
               <div className="text-gray-400 uppercase tracking-widest font-bold text-[10px]">Range</div>
             </div>
           </div>
+        </div>
       </section>
 
       {/* Engineering Process - Web Format */}
