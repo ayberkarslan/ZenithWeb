@@ -107,11 +107,11 @@ const HighlightText = ({ text, highlight }: { text: string, highlight: string })
     <header className="navbar glass" role="banner">
       <div className="container mx-auto px-4 navbar-content flex justify-between items-center">
         <Link to="/" className="brand flex-shrink-0" aria-label="YTU Zenith Home">
-          <span className="brand-text">YTU ZENITH</span>
+          <h1 className="brand-text" style={{ margin: 0, padding: 0, fontSize: 'inherit', fontWeight: 'inherit', lineHeight: 'inherit', display: 'inline' }}>YTU ZENITH</h1>
         </Link>
 
         <nav className={`nav-links ${isMenuOpen ? 'open' : ''} flex-1 flex flex-row flex-nowrap justify-end items-center gap-4 lg:gap-8`} style={{ whiteSpace: 'nowrap' }} role="navigation" aria-label="Main Navigation">
-          <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0">Home</Link>
+          <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0" tabIndex={-1} aria-hidden="true">Home</Link>
           <Link to="/vehicle-design" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0">Vehicle&nbsp;Design</Link>
           <Link to="/dev-log" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0">Dev&nbsp;Log</Link>
           <Link to="/team" onClick={() => setIsMenuOpen(false)} className="flex-shrink-0">Team</Link>
