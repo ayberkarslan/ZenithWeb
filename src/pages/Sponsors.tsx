@@ -6,7 +6,7 @@ export default function Sponsors() {
     { name: "Aco Recycling", tier: "Platinum", link: "https://www.acorecycling.com/", logo: "/aco-recycling.png" },
     { name: "Yıldız Technical University", tier: "University", link: "https://yildiz.edu.tr/", logo: "/ytu_logo.png" },
     { name: "YTÜ Yıldız Teknopark", tier: "Gold", link: "https://yildizteknopark.com.tr/", logo: "/teknopark_logo.png" },
-    { name: "Aviolife", tier: "Silver", link: "https://www.aviolife.com/", logo: "/aviolife_logo.png" },
+    { name: "Skyolympos", tier: "Silver", link: "https://www.skyolympos.com/", logo: "/skyolympos_logo.png" },
     { name: "BeAero", tier: "Bronze", link: "https://www.be-aero.com/", logo: "/beaero_logo.png" },
   ]
 
