@@ -1,3 +1,7 @@
+[data-theme='light'] .vehicle-hero-image {
+  content: url('/heyula_light.png');
+}
+
 .design-grid {
   display: grid;
   grid-template-columns: 1fr;

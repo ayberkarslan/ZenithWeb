@@ -65,7 +65,7 @@ export default function VehicleDesign() {
       {/* New Cinematic Hero Section */}
       <section className="w-full flex flex-col items-center justify-start bg-[#030712] pt-24 md:pt-32 pb-8">
         <div className="relative w-full max-w-[1920px] mx-auto shadow-2xl border-y border-gray-800/60" style={{ aspectRatio: '21/9' }}>
-          <img src="/HEYULA.png" alt="HEYULA 3D Render" className="absolute inset-0 w-full h-full object-cover object-center" />
+          <img src="/HEYULA.png" alt="HEYULA 3D Render" className="vehicle-hero-image absolute inset-0 w-full h-full object-cover object-center" />
           
           {/* Subtle gradient to ensure text readability at the bottom (desktop only) */}
           <div className="desktop-stats absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>

@@ -85,7 +85,7 @@ export default function Team() {
       <div 
         className="pt-32 min-h-screen relative"
         style={{ 
-          backgroundColor: '#000000',
+          backgroundColor: 'var(--bg-color)',
           paddingBottom: '12rem'
         }}
       >
